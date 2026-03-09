@@ -1,0 +1,29 @@
+# Все текстовые файлы нормализуем автоматически
+* text=auto
+
+# Специфично для кода
+*.js    text eol=lf
+*.ts    text eol=lf
+*.jsx   text eol=lf
+*.tsx   text eol=lf
+*.css   text eol=lf
+*.scss  text eol=lf
+*.html  text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+
+# SVG файлы как текст, чтобы LF нормализовались
+*.svg   text eol=lf
+
+# Изображения и бинарные файлы не трогаем
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.woff  binary
+*.woff2 binary
+*.eot   binary
+*.ttf   binary
+*.mp4   binary
