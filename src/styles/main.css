@@ -10,6 +10,13 @@
 
 @font-face {
   font-family: 'Muller';
+  src: url('/fonts/2DF5B4_D_0.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
   src: url('/fonts/2DF5B4_2_0.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
@@ -29,7 +36,9 @@
 
   scroll-behavior: smooth;
 
-  --bg-tranparent: #a6a4a4b8;
+  --text-color-white: #fff;
+  
+  --bgс-info-panel: #424056 ;
 
   --effectDuration: 0.3s ease;
 }
@@ -145,6 +154,10 @@ video {
 ol,
 ul {
   list-style: none;
+}
+
+a {
+    color:inherit
 }
 
 button {

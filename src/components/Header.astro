@@ -1,14 +1,135 @@
+---
+import sprite from '../assets/icons/sprite.svg?url';
+import '../styles/main.css';
+---
+
 <header>
-  <div class="container">
-    <a href="#">м. Вінниця, вул. С. Бандери, 9 (колишня Льва Толстого, 9) </a>
-    <div class="tpan__item-text">
-      <a href="tel:0674903856" class="binct-phone-number-1" data-binct-original="1"
-        >(067)490-38-56</a
-      ><span class="divider">|</span><a
-        href="tel:0631537279"
-        class="binct-phone-number-2"
-        data-binct-original="3">(063)153-72-79</a
+  <div class="nav-panel">
+    <div class="container">
+      <div class="logo-wrapper">
+        <svg class="svg logo">
+          <use xlink:href={`${sprite}#Sirius-logo`}></use>
+        </svg>
+        <div class="name-wrapper">
+          <p>Сіріус</p>
+          <p>стоматологічний центр</p>
+        </div>
+      </div>
+      <button type="button"
+        ><svg class="svg menu">
+          <use xlink:href={`${sprite}#menu`}></use>
+        </svg></button
       >
     </div>
   </div>
 </header>
+<div class="info-panel">
+  <div class="container">
+    <div class="address-wrapper">
+      <svg class="svg info">
+        <use xlink:href={`${sprite}#location`}></use>
+      </svg>
+      <div><a href="#">м. Трускавец, вул. Суховоля, 50, 2 этаж, офис 1</a></div>
+    </div>
+
+    <div class="phone-wrapper">
+      <svg class="svg info">
+        <use xlink:href={`${sprite}#call`}></use>
+      </svg>
+      <div><a href="tel:0674764995" class="phone1">(067)476-49-95</a></div>
+      <span class="divider">|</span>
+      <div><a href="tel:0637415529" class="phone2">(063)741-55-29</a></div>
+      <span class="divider">|</span>
+      <div><a href="tel:0962568070" class="phone2">(096)256-80-70</a></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .nav-panel {
+    padding: 15px 0;
+  }
+
+  .nav-panel .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-panel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #329984;
+  }
+
+  button .svg.menu {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-wrapper {
+    display: flex;
+  }
+
+  .name-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-panel p:first-of-type {
+    font-size: 30px;
+    font-weight: 500;
+    color: #68578f;
+    line-height: 1.06;
+  }
+
+  .nav-panel p:last-of-type {
+    font-size: 18px;
+    font-weight: 400;
+    color: #524d66;
+  }
+
+  .info-panel {
+    padding: 12px 0;
+    background-color: var(--bgс-info-panel);
+    color: var(--text-color-white);
+    font-weight: 400;
+    line-height: 1.375;
+  }
+
+  .address-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .svg.logo {
+    width: 56px;
+    height: 50px;
+    margin-right: 6px;
+  }
+
+  .svg.info {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+
+  .divider {
+    margin: 0 12px;
+  }
+
+  .divider:last-of-type {
+    display: none;
+  }
+
+  .phone-wrapper {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    font-weight: 500;
+  }
+</style>
