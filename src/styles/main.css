@@ -10,6 +10,13 @@
 
 @font-face {
   font-family: 'Muller';
+  src: url('/fonts/2DF5B4_D_0.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
   src: url('/fonts/2DF5B4_2_0.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
@@ -26,44 +33,15 @@
    2. ПЕРЕМЕННЫЕ (Mobile First)
    ========================================================================== */
 :root {
-  /* Цвета и Эффекты */
-  --bg-transparent: rgba(166, 164, 164, 0.72);
-  --effect-duration: 0.3s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-  /* ТИПОГРАФИКА: MOBILE (по умолчанию) */
-  --fs-h1: 28px;
-  --fs-h2: 26px;
-  --fs-modal-h3: 20px;
-  --fs-h3: 18px;
-  --fs-p: 15px;
-  --fs-modal-p: 14px;
-  --fs-hero-p: 15px;
-  --fs-services: 16px;
-  --fs-text: 14px;
-  --fs-list: 15px;
-  --fs-price: 16px;
-  --fs-link: 13px;
-  --fs-confirm: 13px;
-  --fs-button: 12px;
-  --fs-social: 10px;
-}
+  scroll-behavior: smooth;
 
-/* TABLET (от 768px до 1199px) */
-@media (min-width: 768px) {
-  :root {
-    --fs-h1: 38px;
-    --fs-h2: 36px;
-    --fs-modal-h3: 25px;
-    --fs-h3: 20px;
-    --fs-p: 16px;
-    --fs-modal-p: 16px;
-    --fs-hero-p: 18px;
-    --fs-services: 18px;
-    --fs-text: 15px;
-    --fs-link: 14px;
-    --fs-button: 13px;
-  }
-}
+  --text-color-white: #fff;
+  
+  --bgс-info-panel: #424056 ;
 
 /* DESKTOP (от 1200px) */
 @media (min-width: 1200px) {
@@ -118,9 +96,15 @@ ul, ol {
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
-  font-size: var(--fs-link);
+    color:inherit
+}
+
+button {
+  background-color: transparent;
+  font-family: Muller;
+  cursor: pointer;
+  border: none;
+  padding: 0;
 }
 
 img {
