@@ -36,12 +36,42 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   scroll-behavior: smooth;
 
   --text-color-white: #fff;
-  
-  --bgс-info-panel: #424056 ;
+  --bgс-info-panel: #424056;
+
+  /* ТИПОГРАФИКА: MOBILE (базовые значения) */
+  --fs-h1: 28px;
+  --fs-h2: 26px;
+  --fs-modal-h3: 20px;
+  --fs-h3: 18px;
+  --fs-p: 15px;
+  --fs-modal-p: 14px;
+  --fs-hero-p: 15px;
+  --fs-services: 16px;
+  --fs-text: 14px;
+  --fs-list: 15px;
+  --fs-price: 16px;
+  --fs-link: 13px;
+  --fs-confirm: 13px;
+  --fs-button: 12px;
+  --fs-social: 10px;
+} 
+
+/* TABLET (от 768px) */
+@media (min-width: 768px) {
+  :root {
+    --fs-h1: 38px;
+    --fs-h2: 36px;
+    --fs-modal-h3: 25px;
+    --fs-h3: 20px;
+    --fs-services: 18px;
+    --fs-hero-p: 18px;
+    --fs-p: 16px;
+    --fs-modal-p: 16px;
+  }
+}
 
 /* DESKTOP (от 1200px) */
 @media (min-width: 1200px) {
