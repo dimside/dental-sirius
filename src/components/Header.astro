@@ -7,14 +7,28 @@ import '../styles/main.css';
   <div class="nav-panel">
     <div class="container">
       <div class="logo-wrapper">
-        <svg class="svg logo">
-          <use xlink:href={`${sprite}#Sirius-logo`}></use>
-        </svg>
+        <a href="/src/pages/index.astro"
+          ><svg class="svg logo">
+            <use xlink:href={`${sprite}#Sirius-logo`}></use>
+          </svg>
+        </a>
         <div class="name-wrapper">
           <p>Сіріус</p>
           <p>стоматологічний центр</p>
         </div>
       </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#about">Про клініку</a></li>
+          <li><a href="#advantages">Переваги</a></li>
+          <li><a href="#services">Послуги</a></li>
+          <li><a href="#team">Команда</a></li>
+          <li><a href="#gallery">Фото</a></li>
+          <li><a href="#prices">Ціни</a></li>
+          <li><a href="#contacts">Контакти</a></li>
+        </ul>
+      </nav>
       <button type="button"
         ><svg class="svg menu">
           <use xlink:href={`${sprite}#menu`}></use>
@@ -22,37 +36,59 @@ import '../styles/main.css';
       >
     </div>
   </div>
-</header>
-<div class="info-panel">
-  <div class="container">
-    <div class="address-wrapper">
-      <svg class="svg info">
-        <use xlink:href={`${sprite}#location`}></use>
-      </svg>
-      <div><a href="#">м. Трускавец, вул. Суховоля, 50, 2 этаж, офис 1</a></div>
-    </div>
+  <div class="nav-placeholder"></div>
+  <div class="nav-sentinel"></div>
+  <div class="info-panel">
+    <div class="container">
+      <div class="address-wrapper">
+        <svg class="svg info">
+          <use xlink:href={`${sprite}#location`}></use>
+        </svg>
+        <div><a href="#" class="location">м. Трускавец, вул. Суховоля, 50, 2 этаж, офис 1</a></div>
+      </div>
 
-    <div class="phone-wrapper">
-      <svg class="svg info">
-        <use xlink:href={`${sprite}#call`}></use>
-      </svg>
-      <div><a href="tel:0674764995" class="phone1">(067)476-49-95</a></div>
-      <span class="divider">|</span>
-      <div><a href="tel:0637415529" class="phone2">(063)741-55-29</a></div>
-      <span class="divider">|</span>
-      <div><a href="tel:0962568070" class="phone2">(096)256-80-70</a></div>
+      <div class="phone-wrapper">
+        <svg class="svg info">
+          <use xlink:href={`${sprite}#call`}></use>
+        </svg>
+        <div><a href="tel:0674764995" class="phone">(067)476-49-95</a></div>
+        <span class="divider">|</span>
+        <div><a href="tel:0637415529" class="phone">(063)741-55-29</a></div>
+        <span class="divider">|</span>
+        <div><a href="tel:0962568070" class="phone">(096)256-80-70</a></div>
+      </div>
     </div>
   </div>
-</div>
+</header>
 
 <style>
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+
   .nav-panel {
     padding: 15px 0;
+  }
+
+  .nav-panel.fixed {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 
   .nav-panel .container {
     display: flex;
     justify-content: space-between;
+  }
+
+  .main-nav {
+    display: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #656565;
+  }
+
+  .main-nav li {
+    margin-right: 10px;
   }
 
   .nav-panel button {
@@ -62,11 +98,21 @@ import '../styles/main.css';
     width: 50px;
     height: 50px;
     background-color: #329984;
+    transition: var(--effectDuration);
+  }
+
+  .nav-panel button:hover {
+    background-color: #44b88a;
   }
 
   button .svg.menu {
     width: 40px;
     height: 40px;
+    transition: var(--effectDuration);
+  }
+
+  button:hover .svg.menu {
+    scale: 1.1;
   }
 
   .logo-wrapper {
@@ -120,6 +166,7 @@ import '../styles/main.css';
 
   .divider {
     margin: 0 12px;
+    color: #837a96;
   }
 
   .divider:last-of-type {
@@ -132,4 +179,81 @@ import '../styles/main.css';
     justify-content: center;
     font-weight: 500;
   }
+
+  .phone,
+  .location {
+    transition: opacity var(--effectDuration);
+  }
+
+  .phone:hover,
+  .location:hover {
+    opacity: 0.7;
+  }
+
+  .nav-sentinel {
+    height: 1px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    header {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .main-nav {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    .main-nav ul {
+      display: flex;
+      justify-content: end;
+    }
+
+    .nav-panel.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: white;
+    }
+
+    .nav-placeholder {
+      display: none;
+      height: 80px;
+    }
+
+    .nav-panel.fixed + .nav-placeholder {
+      display: block;
+    }
+  }
+
+  .nav-panel button {
+    display: none;
+  }
+
+  .divider:last-of-type {
+    display: block;
+  }
 </style>
+
+<script>
+  const navPanel = document.querySelector('.nav-panel');
+  const sentinel = document.querySelector('.nav-sentinel');
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) {
+        navPanel?.classList.add('fixed');
+      } else {
+        navPanel?.classList.remove('fixed');
+      }
+    },
+    { threshold: 0 }
+  );
+
+  sentinel && observer.observe(sentinel);
+</script>
