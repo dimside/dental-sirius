@@ -97,12 +97,12 @@ import '../styles/main.css';
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: #329984;
+    background-color: var( --main-color);
     transition: var(--effectDuration);
   }
 
   .nav-panel button:hover {
-    background-color: #44b88a;
+    background-color: var( --main-color);
   }
 
   button .svg.menu {
@@ -127,7 +127,7 @@ import '../styles/main.css';
   .nav-panel p:first-of-type {
     font-size: 30px;
     font-weight: 500;
-    color: #68578f;
+    color: #3d3f96;
     line-height: 1.06;
   }
 
@@ -194,7 +194,7 @@ import '../styles/main.css';
     height: 1px;
   }
 
-  @media (min-width: 768px) and (max-width: 1199px) {
+  @media (min-width: 768px) {
     header {
       display: flex;
       flex-direction: column-reverse;
@@ -218,7 +218,7 @@ import '../styles/main.css';
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: white;
+      background: var(--bgc-color-white);
     }
 
     .nav-placeholder {
@@ -229,14 +229,14 @@ import '../styles/main.css';
     .nav-panel.fixed + .nav-placeholder {
       display: block;
     }
-  }
 
-  .nav-panel button {
-    display: none;
-  }
+    .nav-panel button {
+      display: none;
+    }
 
-  .divider:last-of-type {
-    display: block;
+    .divider:last-of-type {
+      display: block;
+    }
   }
 </style>
 
