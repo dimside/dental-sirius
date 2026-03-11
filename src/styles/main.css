@@ -70,6 +70,7 @@
     --fs-hero-p: 18px;
     --fs-p: 16px;
     --fs-modal-p: 16px;
+    --fs-button: 14px;
   }
 }
 
@@ -88,8 +89,7 @@
     --fs-list: 16px;
     --fs-price: 16px;
     --fs-link: 15px;
-    --fs-confirm: 14px;
-    --fs-button: 14px;
+    --fs-confirm: 14px;  
     --fs-social: 12px;
   }
 }
