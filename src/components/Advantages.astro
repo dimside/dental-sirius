@@ -1,5 +1,6 @@
 ---
 import sprite from '../assets/icons/sprite.svg?url';
+import advantages_bg from '../assets/images/advantages__bg-fig.png';
 ---
 
 <section class="advantages">
@@ -89,9 +90,13 @@ import sprite from '../assets/icons/sprite.svg?url';
     </div>
   </div>
 
-  <style>
+  <style define:vars={{ bgUrl: `url(${advantages_bg.src})` }}>
     .advantages {
       background: #f6f6f6;
+      background-image: var(--bgUrl);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .title-h2 {
@@ -197,7 +202,7 @@ import sprite from '../assets/icons/sprite.svg?url';
         width: 119px;
         height: 119px;
       }
-       .thumb:before {
+      .thumb:before {
         top: 17px;
         bottom: 17px;
         left: 17px;
