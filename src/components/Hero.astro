@@ -1,10 +1,96 @@
-<section class="hero">
+---
+import bgImage from '../assets/images/home2.webp?url';
+import bgImage2 from '../assets/images/offer__bg-fig-new.png?url';
+import sprite from '../assets/icons/sprite.svg?url';
+import '../styles/main.css';
+---
+
+<section class="hero" style={`--hero-image: url(${bgImage}); --hero-image2: url(${bgImage2})`}>
   <div class="container">
     <h1>Стоматологічний центр «Сіріус» - для людей та про людей!</h1>
-    <p>
+    <p class="hero-text">
       Професійна команда, преміальне обладнення, сучасні методи лікування і атмосфера комфорту -
       наші головні переваги.
     </p>
-    <button>Записатися на прийом</button>
+    <button class="appointment-button"
+      ><span>Зворотний дзвінок</span><svg class="svg menu">
+        <use xlink:href={`${sprite}#right-arrow`}></use>
+      </svg>
+    </button>
   </div>
 </section>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .hero {
+    max-width: 428px;
+    padding: 32px 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-color-white);
+
+    background-color: var(--hero-bcg-color);
+    background-image:
+      linear-gradient(rgba(46, 47, 66, 0.457), rgba(46, 47, 66, 0.608)), var(--hero-image2),
+      var(--hero-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-text {
+    line-height: 1.68;
+    color: var(--text-color-white);
+  }
+
+  .appointment-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 260px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #1cae91c9;
+    text-transform: uppercase;
+    transition: var(--effectDuration);
+  }
+
+  .appointment-button svg {
+    width: 20px;
+    height: 10px;
+    margin-left: 10px;
+  }
+
+  .appointment-button:hover {
+    background-color: var(--button-hover-color);
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      max-width: 768px;
+    }
+
+    h1 {
+      line-height: 1.1;
+    }
+
+    .appointment-button {
+      width: 320px;
+      height: 70px;
+      border-radius: 35px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hero {
+      max-width: 1200px;
+    }
+  }
+</style>

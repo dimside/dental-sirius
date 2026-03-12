@@ -3,11 +3,11 @@ import sprite from '../assets/icons/sprite.svg?url';
 import '../styles/main.css';
 ---
 
-<header>
+<header id="top">
   <div class="nav-panel">
     <div class="container">
       <div class="logo-wrapper">
-        <a href="/src/pages/index.astro"
+        <a href="#top"
           ><svg class="svg logo">
             <use xlink:href={`${sprite}#Sirius-logo`}></use>
           </svg>
@@ -29,8 +29,8 @@ import '../styles/main.css';
           <li><a href="#contacts">Контакти</a></li>
         </ul>
       </nav>
-      <button type="button"
-        ><svg class="svg menu">
+      <button type="button" class="menu-button">
+        <svg class="svg menu">
           <use xlink:href={`${sprite}#menu`}></use>
         </svg></button
       >
@@ -44,7 +44,11 @@ import '../styles/main.css';
         <svg class="svg info">
           <use xlink:href={`${sprite}#location`}></use>
         </svg>
-        <div><a href="#" class="location">м. Трускавец, вул. Суховоля, 50, 2 этаж, офис 1</a></div>
+        <div>
+          <a href="https://maps.app.goo.gl/snzTugUu8miywrRs7" target="_blank" class="location"
+            >м. Трускавец, вул. Суховоля, 50, 2 этаж, офис 1</a
+          >
+        </div>
       </div>
 
       <div class="phone-wrapper">
@@ -82,13 +86,9 @@ import '../styles/main.css';
 
   .main-nav {
     display: none;
-    font-size: 14px;
+    font-size: var(--fs-nav-panel);
     font-weight: 400;
     color: #656565;
-  }
-
-  .main-nav li {
-    margin-right: 10px;
   }
 
   .nav-panel button {
@@ -97,12 +97,19 @@ import '../styles/main.css';
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: var( --main-color);
+    background-color: var(--main-color);
     transition: var(--effectDuration);
   }
 
+  .menu-button.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 988;
+  }
+
   .nav-panel button:hover {
-    background-color: var( --main-color);
+    background-color: var(--button-hover-color);
   }
 
   button .svg.menu {
@@ -137,10 +144,20 @@ import '../styles/main.css';
     color: #524d66;
   }
 
+  .nav-panel li {
+    transition: var(--effectDuration);
+  }
+
+  .nav-panel li:hover {
+    background-color: #51c2ab20;
+    color: var(--main-color);
+  }
+
   .info-panel {
     padding: 12px 0;
     background-color: var(--bgс-info-panel);
     color: var(--text-color-white);
+    font-size: var(--fs-info-panel);
     font-weight: 400;
     line-height: 1.375;
   }
@@ -153,8 +170,8 @@ import '../styles/main.css';
   }
 
   .svg.logo {
-    width: 56px;
-    height: 50px;
+    width: 64px;
+    height: 57px;
     margin-right: 6px;
   }
 
@@ -210,6 +227,7 @@ import '../styles/main.css';
     .main-nav ul {
       display: flex;
       justify-content: end;
+      gap: 10px;
     }
 
     .nav-panel.fixed {
@@ -238,22 +256,83 @@ import '../styles/main.css';
       display: block;
     }
   }
+
+  @media (min-width: 1200px) {
+    .svg.logo {
+      width: 74px;
+      height: 66px;
+      margin-right: 20px;
+    }
+
+    .nav-panel p:first-of-type {
+      font-size: 34px;
+    }
+
+    .nav-panel p:last-of-type {
+      font-size: 22px;
+    }
+
+    .main-nav ul {
+      gap: 20px;
+    }
+  }
 </style>
 
 <script>
   const navPanel = document.querySelector('.nav-panel');
-  const sentinel = document.querySelector('.nav-sentinel');
+  const navPanelSentinel = document.querySelector('.nav-sentinel');
+  const heroSentinel = document.querySelector('.hero');
+  const menuButton = document.querySelector('.menu-button');
+  const burgerMenu = document.querySelector('.burger-menu');
+  const closeButton = document.querySelector('.close-button');
+  const menuList = document.querySelector('.menu-list');
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry.isIntersecting) {
-        navPanel?.classList.add('fixed');
-      } else {
-        navPanel?.classList.remove('fixed');
+  const openBurgerMenu = () => {
+    if (burgerMenu) burgerMenu.classList.add('open');
+    document.body.classList.add('no-scroll');
+  };
+
+  const closeBurgerMenu = () => {
+    if (burgerMenu) burgerMenu.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.target === navPanelSentinel) {
+        if (navPanel) navPanel.classList.toggle('fixed', !entry.isIntersecting);
       }
-    },
-    { threshold: 0 }
-  );
+      if (entry.target === heroSentinel) {
+        if (menuButton) menuButton.classList.toggle('fixed', !entry.isIntersecting);
+      }
+    });
+  });
 
-  sentinel && observer.observe(sentinel);
+  if (navPanelSentinel) observer.observe(navPanelSentinel);
+  if (heroSentinel) observer.observe(heroSentinel);
+
+  if (menuButton) menuButton.addEventListener('click', openBurgerMenu);
+  if (closeButton) closeButton.addEventListener('click', closeBurgerMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape') closeBurgerMenu();
+  });
+
+  if (burgerMenu) {
+    burgerMenu.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target instanceof HTMLElement && !target.closest('.menu-list')) {
+        closeBurgerMenu();
+      }
+    });
+  }
+
+  if (menuList) {
+    menuList.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target instanceof HTMLElement && target.tagName === 'A') {
+        closeBurgerMenu();
+      }
+    });
+  }
 </script>
