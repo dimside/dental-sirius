@@ -1,0 +1,141 @@
+---
+import sprite from '../assets/icons/sprite.svg?url';
+import '../styles/main.css';
+---
+
+<div class="burger-menu">
+  <button type="button" class="close-button">
+    <svg class="svg menu">
+      <use xlink:href={`${sprite}#close`}></use>
+    </svg></button
+  >
+  <nav>
+    <ul class="menu-list">
+      <li><a href="#about">Про клініку</a></li>
+      <li><a href="#advantages">Переваги</a></li>
+      <li><a href="#services">Послуги</a></li>
+      <li><a href="#team">Команда</a></li>
+      <li><a href="#gallery">Фото</a></li>
+      <li><a href="#prices">Ціни</a></li>
+      <li><a href="#contacts">Контакти</a></li>
+    </ul>
+  </nav>
+</div>
+
+<style>
+  .burger-menu {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    transition-delay: 0.2s;
+    background-color: #262525e4;
+  }
+
+  .burger-menu.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+   
+    width: 50px;
+    height: 50px;
+    background-color: var(--main-color);
+    transition: var(--effectDuration);
+  }
+
+  .close-button svg {
+    width: 100%;
+    height: 100%;
+    transition: var(--effectDuration);
+  }
+
+  .close-button:hover {
+    background-color: var(--button-hover-color);
+  }
+
+  .close-button:hover svg {
+    scale: 1.1;
+  }
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    padding: 50px 50px;
+
+    transform: translate(-50%, -60%);
+    opacity: 0;
+    transition:
+      transform var(--effectDuration),
+      opacity var(--effectDuration);
+  }
+
+  .burger-menu.open .menu-list {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+
+  .menu-list li {
+    font-size: var(--fs-modal-h3);
+    line-height: 1;
+    color: var(--text-color-white);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      transform var(--effectDuration),
+      opacity 0.4s ease;
+  }
+
+  .burger-menu.open .menu-list li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .menu-list li:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+  .menu-list li:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+  .menu-list li:nth-child(3) {
+    transition-delay: 0.15s;
+  }
+  .menu-list li:nth-child(4) {
+    transition-delay: 0.2s;
+  }
+  .menu-list li:nth-child(5) {
+    transition-delay: 0.25s;
+  }
+  .menu-list li:nth-child(6) {
+    transition-delay: 0.3s;
+  }
+  .menu-list li:nth-child(7) {
+    transition-delay: 0.35s;
+  }
+
+  .menu-list a {
+    transition: var(--effectDuration);
+  }
+
+  .menu-list a:hover {
+    color: #51c2ab;
+  }
+</style>

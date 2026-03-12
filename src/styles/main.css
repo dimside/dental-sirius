@@ -38,12 +38,14 @@
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
 
-  --effectDuration: 0.3s ease;
+  --effectDuration: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  --main-color: #329984;
+  --main-color: #2f9e88;
+  --hero-bcg-color: #2e2f4270;
   --text-color-white: #fff;
   --bgc-color-white: #fff;
   --bgс-info-panel: #51c2ab;
+  --button-hover-color: #0e6957d4;
 
   /* ТИПОГРАФИКА: MOBILE (базовые значения) */
   --fs-h1: 28px;
@@ -52,7 +54,7 @@
   --fs-h3: 18px;
   --fs-p: 15px;
   --fs-modal-p: 14px;
-  --fs-hero-p: 15px;
+  --fs-hero-p: 16px;
   --fs-services: 16px;
   --fs-text: 14px;
   --fs-list: 15px;
@@ -61,12 +63,13 @@
   --fs-confirm: 13px;
   --fs-button: 12px;
   --fs-social: 10px;
+  --fs-info-panel: 16px;
 }
 
 /* TABLET (от 768px) */
 @media (min-width: 768px) {
   :root {
-    --fs-h1: 38px;
+    --fs-h1: 35px;
     --fs-h2: 36px;
     --fs-modal-h3: 25px;
     --fs-h3: 20px;
@@ -74,7 +77,9 @@
     --fs-hero-p: 18px;
     --fs-p: 16px;
     --fs-modal-p: 16px;
-    --fs-button: 14px;
+    --fs-button: 16px;
+    --fs-info-panel: 18px;
+    --fs-nav-panel: 14px;
   }
 }
 
@@ -87,7 +92,7 @@
     --fs-h3: 22px;
     --fs-p: 18px;
     --fs-modal-p: 18px;
-    --fs-hero-p: 19px;
+    --fs-hero-p: 25px;
     --fs-services: 20px;
     --fs-text: 16px;
     --fs-list: 16px;
@@ -95,6 +100,8 @@
     --fs-link: 15px;
     --fs-confirm: 14px;
     --fs-social: 12px;
+    --fs-info-panel: 22px;
+    --fs-nav-panel: 22px;
   }
 }
 
@@ -152,11 +159,14 @@ a {
 
 button {
   background-color: transparent;
-  font-family: Muller;
+  font-family: madeevolvesans;
   cursor: pointer;
   border: none;
+  outline: none;
   padding: 0;
   font-size: var(--fs-button);
+  letter-spacing: 0.07em;
+  color: var(--text-color-white);
 }
 
 img {
@@ -176,7 +186,7 @@ svg {
 h1 {
   font-family: 'madeevolvesans', sans-serif;
   font-size: var(--fs-h1);
-  line-height: 1.1;
+  line-height: 1.43;
 }
 h2 {
   font-family: 'madeevolvesans', sans-serif;
