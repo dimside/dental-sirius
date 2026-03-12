@@ -6,7 +6,7 @@ import sprite from '../assets/icons/sprite.svg?url';
   <div class="container">
     <div class="wrapper">
       <div>
-        <h2 class="title-h2"><span class="title-span">Чому нас обирають?</span></h2>
+        <span class="title-span"><h2 class="title-h2">Чому нас обирають?</h2></span>
         <div class="list-wrapper">
           <ul class="ul-list">
             <li class="li-item">
@@ -15,7 +15,7 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#doctor`}></use>
                 </svg>
               </div>
-              <p>Кваліфікований медичний персонал</p>
+              <p><span class="text-bold">Кваліфікований</span> <br />медичний персонал</p>
             </li>
 
             <li class="li-item">
@@ -24,7 +24,8 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#clean`}></use>
                 </svg>
               </div>
-              <p>Стерилізація інструментів автоклавами MELAG, SIRONA</p>
+              <span class="text-bold">Стерилізація інструментів</span>
+              <br /> автоклавами MELAG, SIRONA
             </li>
 
             <li class="li-item">
@@ -33,7 +34,7 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#equipment2`}></use>
                 </svg>
               </div>
-              <p>Європейське обладнання нового покоління</p>
+              <p><span class="text-bold">Європейське обладнання</span> <br />нового покоління</p>
             </li>
 
             <li class="li-item">
@@ -42,7 +43,7 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#guarantee`}></use>
                 </svg>
               </div>
-              <p>Гарантія майже на всі види послуг</p>
+              <><span class="text-bold">Гарантія</span> <br />майже на всі види послуг</>
             </li>
 
             <li class="li-item">
@@ -51,7 +52,9 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#orthopantomogram`}></use>
                 </svg>
               </div>
-              <p>Лікування складних стоматологіческих випадків</p>
+              <p>
+                Лікування складних <span class="text-bold"><br />стоматологіческих випадків</span>
+              </p>
             </li>
 
             <li class="li-item">
@@ -60,7 +63,7 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#clock`}></use>
                 </svg>
               </div>
-              <p>Прийом по запису без очікування в черзі</p>
+              <p><span class="text-bold">Прийом по запису</span><br /> без очікування в черзі</p>
             </li>
 
             <li class="li-item">
@@ -69,7 +72,7 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#implant`}></use>
                 </svg>
               </div>
-              <p>Імплантація MIS і STRAUMANN</p>
+              <p><span class="text-bold">Імплантація</span><br /> MIS і STRAUMANN</p>
             </li>
 
             <li class="li-item">
@@ -78,7 +81,7 @@ import sprite from '../assets/icons/sprite.svg?url';
                   <use xlink:href={`${sprite}#money2`}></use>
                 </svg>
               </div>
-              <p>Баланс між якістю і ціною</p>
+              <p><span class="text-bold">Баланс</span><br /> між якістю і ціною</p>
             </li>
           </ul>
         </div>
@@ -90,23 +93,28 @@ import sprite from '../assets/icons/sprite.svg?url';
     .advantages {
       background: #f6f6f6;
     }
-    
+
     .title-h2 {
-      font-size: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       color: #252525;
       text-align: center;
+      gap: 20px;
     }
-    .title-span {
+
+    .title-h2::before,
+    .title-h2::after {
       content: '';
-      display: block;
-      min-width: 0.6em;
-      width: 0.6em 25.5px;
-      height: 0.1em;
-      background-color: #0294eb;
-      top: 55%;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      left: 0;
+      display: inline-block;
+      width: 19px;
+      height: 4px;
+      background-color: var(--main-color);
+    }
+
+    .text-bold {
+      font-weight: 700;
     }
     .wrapper {
       display: flex;
@@ -126,16 +134,15 @@ import sprite from '../assets/icons/sprite.svg?url';
       padding: 0;
     }
     .li-item {
-      width: 275px;
-      height: 225px;
+      width: 171px;
+      height: 245px;
       text-align: center;
     }
     .thumb {
       position: relative;
-      width: 119px;
-      height: 119px;
+      width: 91px;
+      height: 91px;
       margin: 0 auto 15px;
-
       background-color: rgba(59, 59, 58, 0.08);
       display: flex;
       align-items: center;
@@ -147,12 +154,10 @@ import sprite from '../assets/icons/sprite.svg?url';
     .thumb:before {
       content: '';
       position: absolute;
-
-      top: 15px;
-      bottom: 15px;
-      left: 15px;
-      right: 15px;
-
+      top: 13px;
+      bottom: 13px;
+      left: 13px;
+      right: 13px;
       background: var(--main-color);
       border-radius: 50%;
       z-index: -1;
@@ -160,8 +165,52 @@ import sprite from '../assets/icons/sprite.svg?url';
     .svg {
       position: relative;
       z-index: 2;
-      height: 50px;
+      height: 32px;
       display: block;
+    }
+    @media (min-width: 768px) {
+      .title-h2::before,
+      .title-h2::after {
+        width: 25px;
+      }
+      .thumb {
+        width: 105px;
+        height: 105px;
+      }
+      .thumb:before {
+        top: 15px;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+      }
+      .li-item {
+        width: 181px;
+        height: 270px;
+        text-align: center;
+      }
+      .svg {
+        height: 37px;
+      }
+    }
+    @media (min-width: 1200px) {
+      .thumb {
+        width: 119px;
+        height: 119px;
+      }
+       .thumb:before {
+        top: 17px;
+        bottom: 17px;
+        left: 17px;
+        right: 17px;
+      }
+      .li-item {
+        width: 275px;
+        height: 225px;
+        text-align: center;
+      }
+      .svg {
+        height: 43px;
+      }
     }
   </style>
 </section>
