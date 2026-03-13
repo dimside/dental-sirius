@@ -204,7 +204,7 @@ p {
 }
 
 .hero-text {
-  font-size: var(--fs-hero-p);
+  font-size: var(--fs-hero-p);  
 }
 .service-title {
   font-size: var(--fs-services);
