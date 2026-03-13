@@ -7,13 +7,13 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
   <div class="container">
     <div class="wrapper">
       <div>
-        <span class="title-span"><h2 class="title-h2">Чому нас обирають?</h2></span>
+        <h2 class="title-h2">Чому нас обирають?</h2>
         <div class="list-wrapper">
           <ul class="ul-list">
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#doctor`}></use>
+                  <use href={`${sprite}#doctor`}></use>
                 </svg>
               </div>
               <p><span class="text-bold">Кваліфікований</span> <br />медичний персонал</p>
@@ -22,7 +22,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#clean`}></use>
+                  <use href={`${sprite}#clean`}></use>
                 </svg>
               </div>
               <span class="text-bold">Стерилізація інструментів</span>
@@ -32,7 +32,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#equipment2`}></use>
+                  <use href={`${sprite}#equipment2`}></use>
                 </svg>
               </div>
               <p><span class="text-bold">Європейське обладнання</span> <br />нового покоління</p>
@@ -41,7 +41,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#guarantee`}></use>
+                  <use href={`${sprite}#guarantee`}></use>
                 </svg>
               </div>
               <><span class="text-bold">Гарантія</span> <br />майже на всі види послуг</>
@@ -50,7 +50,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#orthopantomogram`}></use>
+                  <use href={`${sprite}#orthopantomogram`}></use>
                 </svg>
               </div>
               <p>
@@ -61,7 +61,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#clock`}></use>
+                  <use href={`${sprite}#clock`}></use>
                 </svg>
               </div>
               <p><span class="text-bold">Прийом по запису</span><br /> без очікування в черзі</p>
@@ -70,7 +70,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#implant`}></use>
+                  <use href={`${sprite}#implant`}></use>
                 </svg>
               </div>
               <p><span class="text-bold">Імплантація</span><br /> MIS і STRAUMANN</p>
@@ -79,7 +79,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
             <li class="li-item">
               <div class="thumb">
                 <svg class="svg">
-                  <use xlink:href={`${sprite}#money2`}></use>
+                  <use href={`${sprite}#money2`}></use>
                 </svg>
               </div>
               <p><span class="text-bold">Баланс</span><br /> між якістю і ціною</p>
@@ -128,7 +128,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
       align-items: center;
     }
     .list-wrapper {
-      margin-top: 70px;
+      margin-top: 40px;
       width: 100%;
     }
     .ul-list {
@@ -188,6 +188,9 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
         left: 15px;
         right: 15px;
       }
+      .list-wrapper {
+        margin-top: 60px;
+      }
       .li-item {
         width: 181px;
         height: 270px;
@@ -207,6 +210,9 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
         bottom: 17px;
         left: 17px;
         right: 17px;
+      }
+      .list-wrapper {
+        margin-top: 70px;
       }
       .li-item {
         width: 275px;

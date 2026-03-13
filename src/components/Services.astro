@@ -1,22 +1,330 @@
+---
+import protezImg from '../assets/images/protezirovanie.jpg';
+import whiteningImg from '../assets/images/vinir.jpg';
+import implantImg from '../assets/images/implant.jpg';
+import surgeryImg from '../assets/images/ambulator2.jpg';
+import paroImg from '../assets/images/parodontologiya.jpg';
+
+const services = [
+  {
+    id: 'protez',
+    title: 'ПРОТЕЗУВАННЯ',
+    img: protezImg.src,
+    text: 'Можливості сучасних методів протезування такі, що штучні зуби часом не відрізняються від власних. При цьому вони можуть бути і набагато естетичнішими. Тому в даний час втрата одного або декількох зубів не є нерозв’язною проблемою. Процедура протезування дозволяє відновити втрачені зуби, а разом з ними втрачену жувальну функцію, здоров’я і красу. \n Втрачені зуби можна відновити за допомогою незнімних або знімних протезів з опорою на власні зуби або на імплантанти. В цілому, концепція незнімного протезування краще, оскільки забезпечує більший комфорт, кращу функціональність, більш привабливий зовнішній вигляд. \n Коронки виготовляються за різними технологіями і з різних видів кераміки, що мають різні покази. Залежно від конкретного випадку ми підберемо спеціально для вас той матеріал, який дозволить досягти балансу між естетичністю і довговічністю. \n У стоматологічному центрі «TOP DENT» як лікарі, так і зубні техніки використовують у роботі збільшення (стоматологічні мікроскопи і бінокуляри), що забезпечує високий ступінь точності. А в стоматології точність синонім довговічності. Так, рекомендований термін служби правильно поставлених суцільнокерамічних коронок може досягати 20 років!',
+  },
+  {
+    id: 'whitening',
+    title: 'ВІДБІЛЮВАННЯ',
+    img: whiteningImg.src,
+    text: 'Відбілювання — неінвазивна процедура, яка дозволяє освітлити ваші зуби. Результат відбілювання не є вічним, його тривалість багато в чому залежить від структури зуба і особливостей раціону харчування. В середньому ви можете отримати освітлення кольору на 5-7 відтінків. \n Така процедура може бути рекомендована для пацієнтів будь-якого віку, що мають природні зуби без пломб і коронок в естетично значущих відділах. Результат відбілювання триває від 6 місяців до декількох років. У стоматологічному центрі «TOP DENT» відбілювання проводиться системою «Beyond». Після процедури професійного відбілювання пацієнт отримує набір по догляду за ротовою порожниною, що включає гель для зміцнення емалі та профілактики гіперчутливості.',
+  },
+  {
+    id: 'implant',
+    title: 'ІМПЛАНТАЦІЯ',
+    img: implantImg.src,
+    text: 'Імплантологія — це розділ стоматології, який відповідає за відновлення втрачених зубів з опорою на штучні імплантати. Зубний імплантат для нас ніколи не є «просто імплантатом». Це елемент, що дозволяє відновити втрачений зуб, а разом з ним привабливість, комфорт і впевненість у собі. Ми розглядаємо імплантанти як важливий компонент майбутніх відновлених зубів.\n Як правило, імплантанти виготовлені з титану — металу біосумісного з тканинами людини. Вони функціонують як штучні корені, на які встановлюються коронки або мостовидні конструкції, що дозволяють з високим ступенем досконалості відновити цілісність зубного ряду.\n У стоматологічному центрі «TOP DENT» найчастіше використовуються імплантати компаній MIS (Ізраїль) і Straumann (Швейцарія). Це системи імплантатів, що пройшли безліч клінічних досліджень, випробувані часом, довели свою ефективність і мають чудову якість.',
+  },
+  {
+    id: 'surgery',
+    title: 'АМБУЛАТОРНА ХІРУРГІЯ',
+    img: surgeryImg.src,
+    text: `Хірургія порожнини рота є одним з найбільш комплексних напрямків стоматологічної практики. Часто вона є компонентом пародонтологічних, ортодонтичних та ортопедичних процедур і включає в себе профілактику і лікування внутрішньоротових патологій.
+
+Хірургія порожнини рота відповідає за всі хірургічні процедури, пов’язані з:
+* видаленням зубів, які неможливо зберегти в порожнині рота;
+* корекцією форми і об’єму м’яких тканин порожнини рота;
+* кістково-пластичними аугментаціями;
+* видаленням кіст і доброякісних новоутворень в порожнині рота;
+* зубозберігаючі операції, такі, як апікальна резекція, гемісекція, хірургічне подовження коронкової частини зуба.
+
+Більшість цих процедур виконується мікрохірургічною технікою, що дозволяє зменшити післяопераційні больові відчуття, набряки, сприяє швидкому загоєнню, а цифрове планування процедур — додає передбачуваності.`,
+  },
+  {
+    id: 'paro',
+    title: 'ПАРОДОНТОЛОГІЯ',
+    img: paroImg.src,
+    text: 'Тут Пародонтологія — це спеціальність стоматології, яка займається профілактикою, діагностикою та лікуванням захворювань, що вражають пародонт — комплекс тканин, в які входять ясна, кісткова тканина і періодонтальна зв’язка. Саме вони відповідають за стабільність зубів.\n Захворювання пародонту виникають через накопичення бактерій в порожнині рота. М’які і тверді зубні відкладення в зубо-ясеневій борозні або на поверхні коренів зубів викликають хронічне запалення, яке і руйнує тканини, що оточують зуби. Захворювання пародонту діляться на дві основні групи: гінгівіт і пародонтит.\n У будь-якої людини з поганою гігієною порожнини рота може розвинутися гінгівіт — запалення і кровоточивість ясен. Такі фактори, як вагітність, статеве дозрівання, скученість зубів або використання неякісних протезів, сприяють виникненню цієї патології.\n Якщо запалення і кровоточивість ясен на ранніх стадіях не діагностовано і не було проведено лікування, то з часом виникне більш серйозна і складна проблема — пародонтит. Однією з особливостей цього стану є незворотня втрата кісткової тканини, з’являється рухливість зубів. Куріння і цукровий діабет значно збільшують ризик розвитку цього захворювання.\n Пародонтит вражає велику частину населення планети і є чи не основною причиною втрати зубів у дорослих пацієнтів. Лікарі стоматологічного центру «TOP DENT» володіють усіма консервативними та хірургічними методами лікування захворювань пародонту. ПАРОДОНТОЛОГІЯ...',
+  },
+];
+---
+
 <section class="services">
   <div class="container">
-    <h2>Послуги</h2>
-    <ul>
-      <li>
-        <h3>Протезування</h3>
-      </li>
-      <li>
-        <h3>Відбілювання</h3>
-      </li>
-      <li>
-        <h3>Імплантація</h3>
-      </li>
-      <li>
-        <h3>Амбулаторна хірургія</h3>
-      </li>
-      <li>
-        <h3>Пародонтологія</h3>
-      </li>
-    </ul>
+    <div class="wrapper">
+      <h2 class="title-h2">Послуги</h2>
+      <div class="list-wrapper">
+        <ul class="ul-list">
+          {
+            services.map((service) => (
+              <li class="li-item" style={{ backgroundImage: `url(${service.img})` }}>
+                <button class="btn-services" data-modal={service.id}>
+                  <h3>{service.title}</h3>
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </div>
+
+  {
+    services.map((service) => (
+      <div id={service.id} class="backdrop is-hidden">
+        <div class="modal-content">
+          <button class="close-btn" aria-label="Закрити">
+            &times;
+          </button>
+          <h3 class="modal-title">{service.title}</h3>
+          <div class="modal-body">
+            <ul class="modal-list">
+              {service.text.split('\n').map((paragraph, index, arr) => {
+                if (paragraph.startsWith('* ')) {
+                  const isLast = !arr.slice(index + 1).some((line) => line.startsWith('* '));
+                  return (
+                    <li class={`modal-list-item ${isLast ? 'last-item' : ''}`}>
+                      {paragraph.slice(2)}
+                    </li>
+                  );
+                } else if (paragraph.trim() !== '') {
+                  return <p class="modal-text">{paragraph}</p>;
+                }
+              })}
+            </ul>
+          </div>
+        </div>
+      </div>
+    ))
+  }
 </section>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title-h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color-black);
+    text-align: center;
+    gap: 20px;
+  }
+  .title-h2::before,
+  .title-h2::after {
+    content: '';
+    display: inline-block;
+    width: 19px;
+    height: 4px;
+    background-color: var(--main-color);
+    flex-shrink: 0;
+  }
+  .list-wrapper {
+    margin-top: 40px;
+    width: 100%;
+  }
+  .ul-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    gap: 20px;
+  }
+
+  .li-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 345px;
+    height: 245px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .li-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(75, 70, 100, 0.8);
+    z-index: 1;
+  }
+  .btn-services {
+    position: relative;
+    z-index: 2;
+    width: 180px; 
+    height: 50px;
+    border: none;
+    background: none;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-radius: 0;
+  }
+  .btn-services h3 {
+    margin: 0;
+    transition: opacity 0.3s ease;
+  }
+  .btn-services::after {
+    content: 'ДЕТАЛЬНІШЕ';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--main-color);
+    border-radius: 47px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+    letter-spacing: 1;
+  }
+  .btn-services:hover h3 {
+    opacity: 0;
+  }
+  .btn-services:hover::after {
+    opacity: 1;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .backdrop:not(.is-hidden) .modal-content {
+    transform: scale(1);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #333;
+  }
+  .modal-title {
+    color: var(--main-color);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  .modal-text {
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-list {
+    list-style: none;
+  }
+
+  .modal-list-item {
+    position: relative;
+    margin-bottom: 0.5rem;
+    padding-left: 2rem;
+  }
+
+  .modal-list-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.15rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-list-item::after {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    top: 0.4rem;
+    background-color: var(--main-color);
+    border-radius: 50%;
+  }
+  .modal-list-item.last-item {
+    margin-bottom: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .list-wrapper {
+      margin-top: 60px;
+    }
+    .modal-content {
+      top: 15%;
+    }
+    .li-item {
+      width: 352px;
+      height: 252px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .list-wrapper {
+      margin-top: 70px;
+    }
+    .li-item {
+      width: 360px;
+      height: 260px;
+    }
+    .modal-content {
+      padding: 50px;
+      top: 25%;
+    }
+  }
+</style>
+
+<script>
+  const openButtons = document.querySelectorAll('.btn-services');
+  const backdrops = document.querySelectorAll('.backdrop');
+
+  openButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('is-hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  backdrops.forEach((backdrop) => {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop || e.target.closest('.close-btn')) {
+        backdrop.classList.add('is-hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const activeModal = document.querySelector('.backdrop:not(.is-hidden)');
+      if (activeModal) {
+        activeModal.classList.add('is-hidden');
+        document.body.style.overflow = '';
+      }
+    }
+  });
+</script>
