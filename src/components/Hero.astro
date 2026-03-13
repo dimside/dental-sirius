@@ -21,17 +21,14 @@ import '../styles/main.css';
 </section>
 
 <style>
-  .container {
+  .hero {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 15px;
-  }
+    justify-content: center;
 
-  .hero {
-    max-width: 428px;
-    padding: 32px 0;
+    width: 100%;
+    height: 70vh;
+
     margin-left: auto;
     margin-right: auto;
     color: var(--text-color-white);
@@ -43,6 +40,18 @@ import '../styles/main.css';
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+  }
+
+  .container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+
+    max-height: 400px;
   }
 
   .hero-text {
@@ -74,7 +83,7 @@ import '../styles/main.css';
 
   @media (min-width: 768px) {
     .hero {
-      max-width: 768px;
+      /* max-width: 768px; */
     }
 
     h1 {
@@ -90,7 +99,7 @@ import '../styles/main.css';
 
   @media (min-width: 1200px) {
     .hero {
-      max-width: 1200px;
+      /* max-width: 1200px; */
     }
   }
 </style>
