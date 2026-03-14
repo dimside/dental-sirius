@@ -1,0 +1,100 @@
+---
+
+---
+
+<div class="modal-overlay" id="callback-modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close"> ✕ </button>
+
+    <h2 class="modal-title">Зворотний дзвінок</h2>
+
+    <form id="callback-form" class="modal-form">
+      <input type="text" name="name" placeholder="Ваше ім’я" class="modal-input" />
+
+      <input type="tel" name="phone" placeholder="Ваш номер телефону" class="modal-input" />
+
+      <button type="submit" class="modal-btn"> ЗАЛИШИТИ ЗАЯВКУ </button>
+
+      <p class="modal-policy">
+        Натискаючи на кнопку, ви погоджуєтесь з
+        <a href="#">умовами обробки персональних даних</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Получаем элементы модалки
+  const modal = document.getElementById('callback-modal');
+  const closeBtn = document.getElementById('modal-close');
+  const form = document.getElementById('callback-form') as HTMLFormElement | null;
+
+  // Функция открытия модалки
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Функция закрытия модалки
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Вешаем обработчики на кнопки открытия
+  document.querySelectorAll<HTMLElement>('[data-open-modal]').forEach((btn) => {
+    btn.addEventListener('click', openModal);
+  });
+
+  // Закрытие через кнопку "✕"
+  closeBtn?.addEventListener('click', closeModal);
+
+  // Закрытие по клику на фон
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // --- Валидация формы ---
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Получаем input элементы
+    const nameInput = form.querySelector<HTMLInputElement>('input[name="name"]');
+    const phoneInput = form.querySelector<HTMLInputElement>('input[name="phone"]');
+
+    // Если полей нет, просто выходим
+    if (!nameInput || !phoneInput) return;
+
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    let error = false;
+
+    // Проверка имени
+    if (name.length < 2) {
+      nameInput.classList.add('error');
+      error = true;
+    } else {
+      nameInput.classList.remove('error');
+    }
+
+    // Проверка телефона
+    const phoneRegex = /^\+?[0-9\s\-()]{10,}$/;
+    if (!phoneRegex.test(phone)) {
+      phoneInput.classList.add('error');
+      error = true;
+    } else {
+      phoneInput.classList.remove('error');
+    }
+
+    if (error) return;
+
+    // Всё ок — отправка формы
+    alert('Форма відправлена');
+
+    form.reset();
+    closeModal();
+  });
+</script>
