@@ -44,9 +44,10 @@
   --hero-bcg-color: #2e2f4270;
   --text-color-white: #fff;
   --bgc-color-white: #fff;
-  --bgс-info-panel: #51c2ab;
+  --bgc-info-panel: #51c2ab;
   --text-color-black: #252525;
   --button-hover-color: #0e6957d4;
+  --text-color-price: #656565;
   --photo-corner-color: #eaeaf3;
 
   /* ТИПОГРАФИКА: MOBILE (базовые значения) */
@@ -124,7 +125,7 @@ html {
 }
 
 body {
-  font-family: 'Muller', Arial, sans-serif;
+  font-family: 'Muller', Arial,sans-serif;
   line-height: 1.4;
   margin: 0;
   background-color: #fff;
