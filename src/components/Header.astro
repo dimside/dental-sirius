@@ -293,17 +293,17 @@ import '../styles/main.css';
   };
 
   const closeBurgerMenu = () => {
-    if (burgerMenu) burgerMenu.classList.remove('open');
+    burgerMenu?.classList.remove('open');
     document.body.classList.remove('no-scroll');
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.target === navPanelSentinel) {
-        if (navPanel) navPanel.classList.toggle('fixed', !entry.isIntersecting);
+        navPanel?.classList.toggle('fixed', !entry.isIntersecting);
       }
       if (entry.target === heroSentinel) {
-        if (menuButton) menuButton.classList.toggle('fixed', !entry.isIntersecting);
+        menuButton?.classList.toggle('fixed', !entry.isIntersecting);
       }
     });
   });
@@ -318,21 +318,17 @@ import '../styles/main.css';
     if (e.code === 'Escape') closeBurgerMenu();
   });
 
-  if (burgerMenu) {
-    burgerMenu.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target instanceof HTMLElement && !target.closest('.menu-list')) {
-        closeBurgerMenu();
-      }
-    });
-  }
+  burgerMenu?.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target instanceof HTMLElement && !target.closest('.menu-list')) {
+      closeBurgerMenu();
+    }
+  });
 
-  if (menuList) {
-    menuList.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target instanceof HTMLElement && target.tagName === 'A') {
-        closeBurgerMenu();
-      }
-    });
-  }
+  menuList?.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target instanceof HTMLElement && target.tagName === 'A') {
+      closeBurgerMenu();
+    }
+  });
 </script>

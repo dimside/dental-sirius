@@ -48,6 +48,7 @@
   --text-color-black: #252525;
   --button-hover-color: #0e6957d4;
   --photo-corner-color: #eaeaf3;
+  --modal-overlay-color: #000000cc;
 
   /* ТИПОГРАФИКА: MOBILE (базовые значения) */
   --fs-h1: 28px;
@@ -302,7 +303,8 @@ section {
     visibility 250ms;
 }
 
-.backdrop.is-hidden {
+.backdrop.is-hidden,
+.modal-overlay.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

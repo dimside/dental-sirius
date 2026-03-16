@@ -1,5 +1,6 @@
 ---
-import photo from '../assets/images/sirius-photo1.jpg?url';
+import { Image } from 'astro:assets';
+import photo from '../assets/images/sirius-photo1.jpg';
 ---
 
 <section class="about">
@@ -29,7 +30,13 @@ import photo from '../assets/images/sirius-photo1.jpg?url';
       <div class="img-wrapper">
         <div class="img-thumb">
           <span class="left-corner"></span>
-          <img src={photo} alt="фото стоматологічного кабінета" />
+          <Image
+            src={photo}
+            alt="Стоматологічний кабінет клініки Сіріус у Трускавці"
+            width={800}
+            height={500}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
+          />
           <span class="right-corner"></span>
         </div>
       </div>
@@ -95,7 +102,7 @@ import photo from '../assets/images/sirius-photo1.jpg?url';
 
   .img-thumb {
     position: relative;
-    width: 300px;
+    width: 100%;
   }
 
   .left-corner::before {
@@ -147,9 +154,21 @@ import photo from '../assets/images/sirius-photo1.jpg?url';
       margin-bottom: 50px;
     }
 
+    .about h2::before {
+      width: 25px;
+    }
+
+    .about h2::after {
+      width: 25px;
+    }
+
     .text-wrapper {
       gap: 20px;
       line-height: 25px;
+    }
+
+    .img-thumb {
+      max-width: 500px;
     }
   }
 
@@ -172,6 +191,7 @@ import photo from '../assets/images/sirius-photo1.jpg?url';
 
     .img-thumb {
       width: 100%;
+      max-width: none;
     }
   }
 </style>
