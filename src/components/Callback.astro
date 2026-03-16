@@ -1,100 +1,301 @@
 ---
-
+import '../styles/main.css';
+import close from '../assets/icons/close.svg?url';
 ---
 
-<div class="modal-overlay" id="callback-modal">
+<div class="modal-overlay is-hidden" id="callback-modal">
   <div class="modal">
-    <button class="modal-close" id="modal-close"> ✕ </button>
+    <button class="modal-close" id="modal-close">
+      <img src={close} alt="" />
+    </button>
 
-    <h2 class="modal-title">Зворотний дзвінок</h2>
+    <h3 class="modal-title">Зворотний дзвінок</h3>
 
     <form id="callback-form" class="modal-form">
-      <input type="text" name="name" placeholder="Ваше ім’я" class="modal-input" />
+      <div class="field">
+        <input
+          type="text"
+          name="name"
+          placeholder="Ваше ім’я"
+          class="modal-input"
+          autocomplete="name"
+        />
+        <p class="error" data-error="name"></p>
+      </div>
 
-      <input type="tel" name="phone" placeholder="Ваш номер телефону" class="modal-input" />
+      <div class="field">
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Ваш номер телефону"
+          class="modal-input"
+          autocomplete="tel"
+        />
+        <p class="error" data-error="phone"></p>
+      </div>
 
       <button type="submit" class="modal-btn"> ЗАЛИШИТИ ЗАЯВКУ </button>
-
-      <p class="modal-policy">
-        Натискаючи на кнопку, ви погоджуєтесь з
-        <a href="#">умовами обробки персональних даних</a>
-      </p>
     </form>
+
+    <p class="modal-policy">
+      Натискаючи на кнопку, ви погоджуєтесь з
+      <span>умовами обробки персональних даних</span>
+    </p>
   </div>
 </div>
 
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--modal-overlay-color);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    z-index: 1000;
+
+    opacity: 1;
+    transition: all 0.4s ease;
+  }
+
+  .modal-close {
+    position: absolute;
+    inset: 15px 15px auto auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition: var(--effectDuration);
+  }
+
+  .modal-close:hover {
+    background-color: var(--button-hover-color);
+    scale: 1.1;
+  }
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+    width: 100%;
+    height: 70vh;
+
+    padding: 50px 25px;
+    background-color: var(--bgc-color-white);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    transform: translateY(0);
+    transition: all 0.5s ease;
+  }
+
+  .modal-overlay.is-hidden .modal {
+    transform: translateY(100%);
+  }
+
+  .modal h3 {
+    font-size: var(--fs-modal-h3);
+    align-self: center;
+  }
+
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-input {
+    height: 60px;
+    border-radius: 30px;
+    background-color: #d8d8d857;
+    outline: none;
+    border: none;
+    padding: 0 25px 0 25px;
+  }
+
+  .error {
+    font-size: 13px;
+    color: red;
+    margin-top: 5px;
+    min-height: 16px;
+  }
+
+  .modal-input.error-input {
+    border: 1px solid red;
+  }
+
+  .modal-btn {
+    height: 60px;
+    border-radius: 30px;
+    background-color: var(--main-color);
+    transition: var(--effectDuration);
+  }
+
+  .modal-btn:hover {
+    background-color: var(--button-hover-color);
+  }
+
+  .modal-policy {
+    justify-self: end;
+    font-size: 13px;
+    color: #2525257b;
+    text-align: center;
+  }
+
+  .modal-policy span {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .modal-overlay {
+      align-items: center;
+    }
+
+    .modal {
+      width: 420px;
+      height: 500px;
+      border-radius: 20px;
+      opacity: 1;
+      transition: all 0.3s ease-in-out;
+      transform: none;
+    }
+
+    .modal-overlay.is-hidden .modal {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .modal {
+      width: 500px;
+      height: 600px;
+    }
+
+    .modal-input {
+      font-size: 20px;
+    }
+
+    .modal-btn {
+      font-size: 20px;
+    }
+
+    .modal-policy {
+      font-size: 18px;
+    }
+  }
+</style>
+
 <script>
-  // Получаем элементы модалки
-  const modal = document.getElementById('callback-modal');
-  const closeBtn = document.getElementById('modal-close');
-  const form = document.getElementById('callback-form') as HTMLFormElement | null;
+  const callbackBtn = document.querySelector('.appointment-button');
+  const modalCloseBtn = document.querySelector('.modal-close');
+  const modalOverlay = document.querySelector('.modal-overlay');
+  const callbackForm = document.querySelector<HTMLFormElement>('#callback-form');
 
-  // Функция открытия модалки
-  function openModal() {
-    if (!modal) return;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  const nameError = document.querySelector<HTMLElement>('[data-error="name"]');
+  const phoneError = document.querySelector<HTMLElement>('[data-error="phone"]');
 
-  // Функция закрытия модалки
-  function closeModal() {
-    if (!modal) return;
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+  const closeModal = () => {
+    document.body.classList.remove('no-scroll');
+    modalOverlay?.classList.add('is-hidden');
 
-  // Вешаем обработчики на кнопки открытия
-  document.querySelectorAll<HTMLElement>('[data-open-modal]').forEach((btn) => {
-    btn.addEventListener('click', openModal);
+    callbackForm?.reset();
+
+    if (nameError) nameError.textContent = '';
+    if (phoneError) phoneError.textContent = '';
+
+    // Сброс классов ошибок у полей, если добавляли
+    callbackForm?.querySelectorAll('input').forEach((input) => {
+      input.classList.remove('error-input');
+    });
+  };
+
+  callbackBtn?.addEventListener('click', () => {
+    document.body.classList.add('no-scroll');
+    modalOverlay?.classList.remove('is-hidden');
   });
 
-  // Закрытие через кнопку "✕"
-  closeBtn?.addEventListener('click', closeModal);
+  modalCloseBtn?.addEventListener('click', closeModal);
 
-  // Закрытие по клику на фон
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape') closeModal();
   });
 
-  // --- Валидация формы ---
-  form?.addEventListener('submit', (e) => {
+  modalOverlay?.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.modal')) closeModal();
+  });
+
+  // Валидация
+  function validate(formData: FormData): { isValid: boolean; name: string; phone: string } {
+    let isValid = true;
+
+    // Сбрасываем ошибки
+    if (nameError) nameError.textContent = '';
+    if (phoneError) phoneError.textContent = '';
+
+    const name = formData.get('name')?.toString().trim() || '';
+    const phone = formData.get('phone')?.toString().trim() || '';
+
+    // Имя
+    const nameRegex = /^[А-Яа-яЁёІЇЄҐієїґA-Za-z\s]{1,30}$/;
+    if (!nameRegex.test(name)) {
+      if (nameError) nameError.textContent = 'Імʼя повинно містити тільки букви (до 30 символів)';
+      isValid = false;
+    }
+
+    // Телефон
+    const phoneRegex = /^[0-9+\-\s()]{10,20}$/;
+    if (!phoneRegex.test(phone)) {
+      if (phoneError) phoneError.textContent = 'Введіть правильний номер телефону';
+      isValid = false;
+    }
+
+    return { isValid, name, phone };
+  }
+
+  // Отправка формы
+  callbackForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Получаем input элементы
-    const nameInput = form.querySelector<HTMLInputElement>('input[name="name"]');
-    const phoneInput = form.querySelector<HTMLInputElement>('input[name="phone"]');
+    if (!callbackForm) return;
 
-    // Если полей нет, просто выходим
-    if (!nameInput || !phoneInput) return;
+    const formData = new FormData(callbackForm);
 
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim();
+    if (!validate(formData).isValid) return;
 
-    let error = false;
+    const name = validate(formData).name;
+    const phone = validate(formData).phone;
 
-    // Проверка имени
-    if (name.length < 2) {
-      nameInput.classList.add('error');
-      error = true;
-    } else {
-      nameInput.classList.remove('error');
+    const message = `
+📞 Нова заявка з сайту
+
+👤 Ім'я: ${name}
+📱 Телефон: ${phone}
+`;
+    const BOT_TOKEN = '8445096531:AAEOs70lifpXym27rgnkV4TQNf9s7Dh_Zbs';
+    const YOUR_CHAT_ID = 491842033;
+    try {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: YOUR_CHAT_ID, text: message }),
+      });
+
+      alert('Заявку відправлено');
+
+      callbackForm.reset();
+      closeModal();
+    } catch (error) {
+      alert('Помилка відправки');
+      console.error(error);
     }
-
-    // Проверка телефона
-    const phoneRegex = /^\+?[0-9\s\-()]{10,}$/;
-    if (!phoneRegex.test(phone)) {
-      phoneInput.classList.add('error');
-      error = true;
-    } else {
-      phoneInput.classList.remove('error');
-    }
-
-    if (error) return;
-
-    // Всё ок — отправка формы
-    alert('Форма відправлена');
-
-    form.reset();
-    closeModal();
   });
 </script>
