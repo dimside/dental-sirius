@@ -1,6 +1,14 @@
 ---
 import sprite from '../assets/icons/sprite.svg?url';
 import advantages_bg from '../assets/images/advantages__bg-fig.png';
+import doc from '../assets/icons/doctor.svg?url';
+import clean from '../assets/icons/clean.svg?url';
+import equipment2 from '../assets/icons/equipment2.svg?url';
+import guarantee from '../assets/icons/guarantee.svg?url';
+import orthopantomogram from '../assets/icons/orthopantomogram.svg?url';
+import clock from '../assets/icons/clock.svg?url';
+import implant from '../assets/icons/implant.svg?url';
+import money2 from '../assets/icons/money2.svg?url';
 ---
 
 <section class="advantages" id="advantages">
@@ -8,84 +16,83 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
     <div class="wrapper">
       <div>
         <h2 class="title-h2">Чому нас обирають?</h2>
-        <div class="list-wrapper">
-          <ul class="ul-list">
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#doctor`}></use>
-                </svg>
-              </div>
-              <p><span class="text-bold">Кваліфікований</span> <br />медичний персонал</p>
-            </li>
 
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#clean`}></use>
-                </svg>
+        <ul class="ul-list">
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={doc} alt="" />
               </div>
-              <span class="text-bold">Стерилізація інструментів</span>
-              <br /> автоклавами MELAG, SIRONA
-            </li>
+            </div>
+            <p><span class="text-bold">Кваліфікований</span> <br />медичний персонал</p>
+          </li>
 
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#equipment2`}></use>
-                </svg>
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={clean} alt="" />
               </div>
-              <p><span class="text-bold">Європейське обладнання</span> <br />нового покоління</p>
-            </li>
+            </div>
+            <span class="text-bold">Стерилізація інструментів</span>
+            <br /> автоклавами MELAG, SIRONA
+          </li>
 
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#guarantee`}></use>
-                </svg>
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={equipment2} alt="" />
               </div>
-              <><span class="text-bold">Гарантія</span> <br />майже на всі види послуг</>
-            </li>
+            </div>
+            <p><span class="text-bold">Європейське обладнання</span> <br />нового покоління</p>
+          </li>
 
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#orthopantomogram`}></use>
-                </svg>
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={guarantee} alt="" />
               </div>
-              <p>
-                Лікування складних <span class="text-bold"><br />стоматологіческих випадків</span>
-              </p>
-            </li>
+            </div>
+            <><span class="text-bold">Гарантія</span> <br />майже на всі види послуг</>
+          </li>
 
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#clock`}></use>
-                </svg>
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={orthopantomogram} alt="" />
               </div>
-              <p><span class="text-bold">Прийом по запису</span><br /> без очікування в черзі</p>
-            </li>
+            </div>
+            <p>
+              Лікування складних <span class="text-bold"><br />стоматологіческих випадків</span>
+            </p>
+          </li>
 
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#implant`}></use>
-                </svg>
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={clock} alt="" />
               </div>
-              <p><span class="text-bold">Імплантація</span><br /> MIS і STRAUMANN</p>
-            </li>
+            </div>
+            <p><span class="text-bold">Прийом по запису</span><br /> без очікування в черзі</p>
+          </li>
 
-            <li class="li-item">
-              <div class="thumb">
-                <svg class="svg">
-                  <use href={`${sprite}#money2`}></use>
-                </svg>
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={implant} alt="" />
               </div>
-              <p><span class="text-bold">Баланс</span><br /> між якістю і ціною</p>
-            </li>
-          </ul>
-        </div>
+            </div>
+            <p><span class="text-bold">Імплантація</span><br /> MIS і STRAUMANN</p>
+          </li>
+
+          <li class="li-item">
+            <div class="thumb">
+              <div class="svg">
+                <img src={money2} alt="" />
+              </div>
+            </div>
+            <p><span class="text-bold">Баланс</span><br /> між якістю і ціною</p>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -127,11 +134,9 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
       flex-direction: column;
       align-items: center;
     }
-    .list-wrapper {
+    .ul-list {
       margin-top: 40px;
       width: 100%;
-    }
-    .ul-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -168,10 +173,12 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
       z-index: -1;
     }
     .svg {
-      position: relative;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       z-index: 2;
-      height: 32px;
-      display: block;
     }
     @media (min-width: 768px) {
       .title-h2::before,
@@ -188,7 +195,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
         left: 15px;
         right: 15px;
       }
-      .list-wrapper {
+      .ul-list {
         margin-top: 60px;
       }
       .li-item {
@@ -197,7 +204,8 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
         text-align: center;
       }
       .svg {
-        height: 37px;
+        width: 40px;
+        height: 40px;
       }
     }
     @media (min-width: 1200px) {
@@ -211,7 +219,7 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
         left: 17px;
         right: 17px;
       }
-      .list-wrapper {
+      .ul-list {
         margin-top: 70px;
       }
       .li-item {
@@ -220,7 +228,8 @@ import advantages_bg from '../assets/images/advantages__bg-fig.png';
         text-align: center;
       }
       .svg {
-        height: 43px;
+        width: 50px;
+        height: 50px;
       }
     }
   </style>

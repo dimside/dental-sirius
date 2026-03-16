@@ -1,5 +1,109 @@
+---
+import foto1 from '../assets/images/stomatologiya-tzov-sirius-ltd-foto_0.jpg?url';
+import foto2 from '../assets/images/stomatologiya-tzov-sirius-ltd-foto_1.jpg?url';
+import foto3 from '../assets/images/stomatologiya-tzov-sirius-ltd-foto.jpg?url';
+---
+
 <section class="gallery">
   <div class="container">
-    <h2>Оцініть комфорт в нашій клініці</h2>
+    <div class="wrapper">
+      <h2 class="title-h2">Наш стоматологічний кабінет</h2>
+      <ul class="ul-list">
+        <li class="li-item">
+          <div class="thumb">
+            <img src={foto1} alt="стамотологія сіріус" class="img" />
+          </div>
+        </li>
+        <li class="li-item">
+          <div class="thumb">
+            <img src={foto2} alt="стамотологія сіріус" class="img" />
+          </div>
+        </li>
+        <li class="li-item">
+          <div class="thumb">
+            <img src={foto3} alt="стамотологія сіріус" class="img" />
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title-h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color-black);
+    text-align: center;
+    gap: 20px;
+  }
+  .title-h2::before,
+  .title-h2::after {
+    content: '';
+    display: inline-block;
+    width: 19px;
+    height: 4px;
+    background-color: var(--main-color);
+    flex-shrink: 0;
+  }
+  .ul-list {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    gap: 20px;
+  }
+  .li-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .thumb {
+    width: 345px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease; /* Для плавной анимации */
+  }
+  .img {
+    height: 100%;
+  }
+  @media (min-width: 768px) {
+    .title-h2::before,
+    .title-h2::after {
+      width: 25px;
+    }
+    .ul-list {
+      margin-top: 60px;
+    }
+    .thumb {
+      width: 351px;
+      height: 300px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .ul-list {
+      margin-top: 70px;
+    }
+    .thumb {
+      width: 360px;
+    }
+  }
+</style>
