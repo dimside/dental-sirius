@@ -20,7 +20,7 @@ const info = [
 ];
 ---
 
-<section class="team">
+<section id="team" class="team">
   <div class="container">
     <div class="wrapper">
       <div>
@@ -168,7 +168,7 @@ const info = [
     border-radius: 50%;
     background-color: var(--main-color);
     transition: var(--effectDuration);
-    cursor: pointer;    
+    cursor: pointer;
   }
   .close-btn:hover {
     background-color: var(--button-hover-color);
@@ -221,7 +221,7 @@ const info = [
   openButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const modalId = btn.getAttribute('data-modal');
-      const modal = document.getElementById(modalId);
+      const modal = modalId && document.getElementById(modalId);
       if (modal) {
         modal.classList.remove('is-hidden');
         document.body.style.overflow = 'hidden';
@@ -231,7 +231,8 @@ const info = [
 
   backdrops.forEach((backdrop) => {
     backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop || e.target.closest('.close-btn')) {
+      const target = e.target as HTMLElement;
+      if (target === backdrop || target.closest('.close-btn')) {
         backdrop.classList.add('is-hidden');
         document.body.style.overflow = '';
       }
