@@ -75,10 +75,9 @@ import '../styles/main.css';
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     text-align: center;
-    gap: 15px;
+    gap: 30px;
 
     max-height: 400px;
   }
@@ -113,6 +112,10 @@ import '../styles/main.css';
   }
 
   @media (min-width: 768px) {
+    .container {
+      justify-content: space-between;
+    }
+
     h1 {
       line-height: 1.1;
     }
@@ -122,8 +125,5 @@ import '../styles/main.css';
       height: 70px;
       border-radius: 35px;
     }
-  }
-
-  @media (min-width: 1200px) {
   }
 </style>
