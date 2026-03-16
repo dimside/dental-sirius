@@ -2,36 +2,65 @@
 import advantages_bg from '../assets/images/advantages__bg-fig.png';
 import doc1 from '../assets/images/doc1.jpg';
 import doc2 from '../assets/images/doc2.jpg';
+import close from '../assets/icons/close.svg?url';
+
+const info = [
+  {
+    id: '1',
+    name: 'Болоховецький Олександр Іванович',
+    text: 'Керівник клініки, Болоховецький Олександр Іванович, спеціалізується на ортопедії та хірургії, що дозволяє проводити складні процедури з максимальною точністю та ефективністю.',
+    img: doc1,
+  },
+  {
+    id: '2',
+    name: 'Алексеєва Світлана Анатоліївна',
+    text: 'Алексеєва Світлана Анатоліївна, терапевт, ортопед і хірург, надає широкий спектр послуг від профілактичних оглядів до хірургічних втручань, забезпечуючи комплексний підхід до лікування пацієнтів.',
+    img: doc2,
+  },
+];
 ---
 
 <section class="team">
   <div class="container">
     <div class="wrapper">
       <div>
-        <h2 class="title-h2">Команда «Сіріус»</h2>
-
+        <h2 class="title-h2">Команда лікарів клініки «Сіріус»</h2>
         <ul class="ul-list">
-          <li class="li-item">
-            <div class="thumb"><img src={doc1.src} alt="" /></div>
-            <div class="info">
-              <h3>Черниш Андрій Володимирович</h3>
-              <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
-              <button class="btn-team">Детальніше</button>
-            </div>
-          </li>
-          <li class="li-item">
-            <div class="thumb"><img src={doc2.src} alt="" /></div>
-            <div class="info">
-              <h3>Черниш Андрій Володимирович</h3>
-              <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
-
-              <button class="btn-team">Детальніше</button>
-            </div>
-          </li>
+          {
+            info.map((item) => (
+              <li class="li-item">
+                <div class="thumb">
+                  <img src={item.img.src} alt="" />
+                </div>
+                <div class="info">
+                  <h3>{item.name}</h3>
+                  <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
+                  <button class="btn-team" data-modal={item.id}>
+                    Детальніше
+                  </button>
+                </div>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
   </div>
+  {
+    info.map((item) => (
+      <div id={item.id} class="backdrop is-hidden">
+        <div class="modal-content">
+          <button class="close-btn" aria-label="Закрити">
+            <img src={close} alt="" />
+          </button>
+          <h3 class="modal-title">{item.name}</h3>
+          <div class="modal-body">
+            <p class="modal-text">{item.text}</p>
+          </div>
+        </div>
+      </div>
+    ))
+  }
 </section>
 
 <style define:vars={{ bgUrl: `url(${advantages_bg.src})` }}>
@@ -82,7 +111,7 @@ import doc2 from '../assets/images/doc2.jpg';
     padding: 0;
   }
   .li-item {
-    width: 345px;   
+    width: 345px;
     text-align: center;
     margin-bottom: 30px;
   }
@@ -103,9 +132,56 @@ import doc2 from '../assets/images/doc2.jpg';
     color: #fff;
     background-color: var(--main-color);
     border-radius: 47px;
-    transition: opacity 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
     font-size: 18px;
     background: var(--main-color);
+  }
+  .btn-team:hover {
+    background: var(--button-hover-color);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  }
+  .modal-content {
+    position: absolute;
+    top: 20%;
+    background-color: #ffffff;
+    padding: 30px;
+    width: 345px;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .backdrop:not(.is-hidden) .modal-content {
+    transform: scale(1);
+  }
+
+  .close-btn {
+    position: absolute;
+    inset: 15px 15px auto auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition: var(--effectDuration);
+    cursor: pointer;    
+  }
+  .close-btn:hover {
+    background-color: var(--button-hover-color);
+    scale: 1.1;
+  }
+  .modal-title {
+    color: var(--main-color);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  .modal-text {
+    margin-bottom: 1.5rem;
   }
   @media (min-width: 768px) {
     .title-h2::before,
@@ -124,10 +200,51 @@ import doc2 from '../assets/images/doc2.jpg';
     .li-item:last-child {
       margin-right: 0;
     }
+    .modal-content {
+      top: 30%;
+      width: 500px;
+    }
   }
   @media (min-width: 1200px) {
     .ul-list {
       margin-top: 70px;
     }
+    .modal-content {
+      width: 900px;
+    }
   }
 </style>
+<script>
+  const openButtons = document.querySelectorAll('.btn-team');
+  const backdrops = document.querySelectorAll('.backdrop');
+
+  openButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('is-hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  backdrops.forEach((backdrop) => {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop || e.target.closest('.close-btn')) {
+        backdrop.classList.add('is-hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const activeModal = document.querySelector('.backdrop:not(.is-hidden)');
+      if (activeModal) {
+        activeModal.classList.add('is-hidden');
+        document.body.style.overflow = '';
+      }
+    }
+  });
+</script>

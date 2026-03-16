@@ -4,6 +4,7 @@ import whiteningImg from '../assets/images/vinir.jpg';
 import implantImg from '../assets/images/implant.jpg';
 import surgeryImg from '../assets/images/ambulator2.jpg';
 import paroImg from '../assets/images/parodontologiya.jpg';
+import close from '../assets/icons/close.svg?url';
 
 const services = [
   {
@@ -72,7 +73,7 @@ const services = [
       <div id={service.id} class="backdrop is-hidden">
         <div class="modal-content">
           <button class="close-btn" aria-label="Закрити">
-            &times;
+            <img src={close} alt="" />
           </button>
           <h3 class="modal-title">{service.title}</h3>
           <div class="modal-body">
@@ -142,6 +143,7 @@ const services = [
     position: relative;
     border-radius: 8px;
     overflow: hidden;
+    cursor: pointer;
   }
   .li-item::before {
     content: '';
@@ -176,18 +178,25 @@ const services = [
     align-items: center;
     justify-content: center;
     color: #fff;
-    background-color: var(--main-color);
+    background-color: var(--button-hover-color);
     border-radius: 47px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: translateY(10px); /* старт ниже */
+
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+
     font-size: 18px;
     letter-spacing: 1;
   }
-  .btn-services:hover h3 {
+  .li-item:hover .btn-services h3 {
     opacity: 0;
   }
-  .btn-services:hover::after {
+
+  .li-item:hover .btn-services::after {
     opacity: 1;
+    transform: translateY(0);
   }
 
   .modal-content {
@@ -209,13 +218,17 @@ const services = [
 
   .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 32px;
-    border: none;
-    background: none;
+    inset: 15px 15px auto auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition: var(--effectDuration);
     cursor: pointer;
-    color: #333;
+  }
+  .close-btn:hover {
+    background-color: var(--button-hover-color);
+    scale: 1.1;
   }
   .modal-title {
     color: var(--main-color);
