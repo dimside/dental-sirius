@@ -1,12 +1,15 @@
-<!-- ---
+---
 import { Image } from 'astro:assets';
 import location from '../assets/icons/location.svg?url';
 import clock from '../assets/icons/clock2.svg?url';
 import call from '../assets/icons/call.svg?url';
-import photo from '../assets/images/sirius-photo1.jpg';
+
+import ViberIcon from '../assets/icons/viber.svg';
+import TelegramIcon from '../assets/icons/telegram.svg';
+import WhatsAppIcon from '../assets/icons/whatsapp.svg';
 ---
 
-<section class="contacts">
+<section id="contacts" class="contacts">
   <div class="container">
     <h2>Контакти</h2>
     <div class="all-info-wrapper">
@@ -57,30 +60,38 @@ import photo from '../assets/images/sirius-photo1.jpg';
         </ul>
         <ul class="social-list">
           <li class="social-item">
-            <a class="social-image" href="viber://chat?number=%2B380501234567">
-              <img src={call} alt="Написати у Viber" class="social-sign" />
+            <a
+              class="social-link"
+              href="viber://chat?number=%2B380501234567"
+              target="_blank"
+              rel="noopener"
+              aria-label="Написати у Viber"
+            >
+              <ViberIcon class="social-sign" role="img" />
             </a>
             <p>Viber</p>
           </li>
           <li class="social-item">
             <a
-              class="social-image"
+              class="social-link"
               href="https://t.me/Konstantin_Sorochan"
               target="_blank"
               rel="noopener"
+              aria-label="Написати у Telegram"
             >
-              <img src={call} alt="Написати у Telegram" class="social-sign" />
+              <TelegramIcon class="social-sign" role="img" />
             </a>
             <p>Telegram</p>
           </li>
           <li class="social-item">
             <a
-              class="social-image"
+              class="social-link"
               href="https://wa.me/380631011119"
               target="_blank"
               rel="noopener"
+              aria-label="Написати у Whatsapp"
             >
-              <img src={call} alt="Написати у WhatsApp" class="social-sign" />
+              <WhatsAppIcon class="social-sign" role="img" />
             </a>
             <p>WhatsApp</p>
           </li>
@@ -91,9 +102,7 @@ import photo from '../assets/images/sirius-photo1.jpg';
         <div class="map-thumb">
           <span class="left-corner"></span>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.7408076914444!2d23.515340075987634!3d49.28130837085214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473a4968686ccfbd%3A0x55610d64346bd60d!2sTts%20Vektor!5e0!3m2!1sru!2sua!4v1773669252430!5m2!1sru!2sua"
-            width="600"
-            height="450"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.9492807430615!2d23.4949757759875!3d49.27735827113193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473a49b1422d8c8d%3A0xf243f5ca1eca3235!2z0YPQuy4g0KHRg9GF0L7QstC-0LvRjywgNTAsINCi0YDRg9GB0LrQsNCy0LXRhiwg0JvRjNCy0L7QstGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCA4MjIwMA!5e0!3m2!1sru!2sua!4v1773679864395!5m2!1sru!2sua"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
@@ -176,7 +185,7 @@ import photo from '../assets/images/sirius-photo1.jpg';
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #2f9e8836;
+    background-color: #3b3b3a14;
   }
 
   .sign-wrapper::before {
@@ -221,14 +230,19 @@ import photo from '../assets/images/sirius-photo1.jpg';
     gap: 30px;
   }
 
+  .social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .social-list p {
     margin-top: 8px;
     font-size: 10px;
     letter-spacing: 0.05em;
-    text-align: center;
   }
 
-  .social-image {
+  .social-link {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -239,12 +253,20 @@ import photo from '../assets/images/sirius-photo1.jpg';
   }
 
   .social-sign {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
+    fill: #424057;
+    transition: var(--effectDuration);
+  }
+
+  .social-sign:hover {
+    fill: #424057a2;
+    scale: 1.1;
   }
 
   .map-wrapper {
-    padding: 25px 25px;
+    width: 100%;
+    padding: 15px 25px;
   }
 
   .map-thumb {
@@ -252,7 +274,13 @@ import photo from '../assets/images/sirius-photo1.jpg';
     width: 100%;
   }
 
-  .left-corner::before {
+  iframe {
+    width: 100%;
+    height: 350px;
+  }
+
+  .left-corner::before,
+  .left-corner::after {
     content: '';
     display: block;
     width: 60px;
@@ -264,36 +292,25 @@ import photo from '../assets/images/sirius-photo1.jpg';
   }
 
   .left-corner::after {
-    content: '';
-    display: block;
     width: 8px;
     height: 60px;
-    background-color: var(--photo-corner-color);
-    position: absolute;
-    top: -25px;
-    left: -25px;
   }
 
-  .right-corner::before {
+  .right-corner::before,
+  .right-corner::after {
     content: '';
     display: block;
     width: 60px;
     height: 8px;
     background-color: var(--photo-corner-color);
     position: absolute;
-    bottom: -25px;
+    bottom: -20px;
     right: -25px;
   }
 
   .right-corner::after {
-    content: '';
-    display: block;
     width: 8px;
     height: 60px;
-    background-color: var(--photo-corner-color);
-    position: absolute;
-    bottom: -25px;
-    right: -25px;
   }
 
   @media (min-width: 768px) {
@@ -324,14 +341,15 @@ import photo from '../assets/images/sirius-photo1.jpg';
       width: 40%;
     }
 
-    .map-thumb {
-      max-width: 500px;
+    .social-list p {
+      font-size: 12px;
     }
   }
 
   @media (min-width: 1200px) {
     .all-info-wrapper {
       flex-direction: row;
+      width: 100%;
     }
 
     .info-wrapper {
@@ -365,7 +383,14 @@ import photo from '../assets/images/sirius-photo1.jpg';
 
     .map-thumb {
       width: 100%;
-      max-width: none;
+    }
+
+    iframe {
+      height: 385px;
+    }
+
+    .social-list p {
+      font-size: 14px;
     }
   }
-</style> -->
+</style>
