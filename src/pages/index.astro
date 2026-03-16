@@ -8,6 +8,7 @@ import Team from '../components/Team.astro';
 import Gallery from '../components/Gallery.astro';
 import Footer from '../components/Footer.astro';
 import BurgerMenu from '../components/BurgerMenu.astro';
+import Prices from '../components/Prices.astro';
 import '../styles/main.css';
 ---
 
@@ -22,13 +23,14 @@ import '../styles/main.css';
   </head>
   <body>
     <Header />
-    <main>
+    <>
       <Hero />
       <About />
       <Advantages />
       <Services />
       <Team />
       <Gallery />
+      <Prices/>
     </main>
     <Footer />
     <BurgerMenu />

@@ -52,19 +52,18 @@ const services = [
   <div class="container">
     <div class="wrapper">
       <h2 class="title-h2">Послуги</h2>
-      <div class="list-wrapper">
-        <ul class="ul-list">
-          {
-            services.map((service) => (
-              <li class="li-item" style={{ backgroundImage: `url(${service.img})` }}>
-                <button class="btn-services" data-modal={service.id}>
-                  <h3>{service.title}</h3>
-                </button>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+
+      <ul class="ul-list">
+        {
+          services.map((service) => (
+            <li class="li-item" style={{ backgroundImage: `url(${service.img})` }}>
+              <button class="btn-services" data-modal={service.id}>
+                <h3>{service.title}</h3>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 
@@ -121,11 +120,9 @@ const services = [
     background-color: var(--main-color);
     flex-shrink: 0;
   }
-  .list-wrapper {
+  .ul-list {
     margin-top: 40px;
     width: 100%;
-  }
-  .ul-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -156,7 +153,7 @@ const services = [
   .btn-services {
     position: relative;
     z-index: 2;
-    width: 180px; 
+    width: 180px;
     height: 50px;
     border: none;
     background: none;
@@ -268,8 +265,12 @@ const services = [
     margin-bottom: 1.5rem;
   }
   @media (min-width: 768px) {
-    .list-wrapper {
+    .ul-list {
       margin-top: 60px;
+    }
+    .title-h2::before,
+    .title-h2::after {
+      width: 25px;
     }
     .modal-content {
       top: 15%;
@@ -280,7 +281,7 @@ const services = [
     }
   }
   @media (min-width: 1200px) {
-    .list-wrapper {
+    .ul-list {
       margin-top: 70px;
     }
     .li-item {

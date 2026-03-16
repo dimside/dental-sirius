@@ -44,10 +44,10 @@
   --hero-bcg-color: #2e2f4270;
   --text-color-white: #fff;
   --bgc-color-white: #fff;
-  --bgс-info-panel: #51c2ab;
+  --bgc-info-panel: #51c2ab;
   --text-color-black: #252525;
   --button-hover-color: #0e6957d4;
-
+  --text-color-price: #656565;
   /* ТИПОГРАФИКА: MOBILE (базовые значения) */
   --fs-h1: 28px;
   --fs-h2: 26px;
@@ -123,7 +123,7 @@ html {
 }
 
 body {
-  font-family: 'Muller', Arial, sans-serif;
+  font-family: 'Muller', Arial,sans-serif;
   line-height: 1.4;
   margin: 0;
   background-color: #fff;
@@ -204,7 +204,7 @@ p {
 }
 
 .hero-text {
-  font-size: var(--fs-hero-p);  
+  font-size: var(--fs-hero-p);
 }
 .service-title {
   font-size: var(--fs-services);
@@ -300,7 +300,6 @@ section {
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 250ms;
 }
-
 
 .backdrop.is-hidden {
   opacity: 0;

@@ -1,28 +1,133 @@
 ---
+import advantages_bg from '../assets/images/advantages__bg-fig.png';
 import doc1 from '../assets/images/doc1.jpg';
 import doc2 from '../assets/images/doc2.jpg';
 ---
 
 <section class="team">
   <div class="container">
-    <h2>Команда «TopDent»</h2>
-    <ul>
-      <li>
-        <div><img src={doc1.src} alt="" /></div>
-        <div>
-          <h3>Черниш Андрій Володимирович</h3>
-          <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
-        </div>
-        <button>Детальніше</button>
-      </li>
-      <li>
-        <div><img src={doc2.src} alt="" /></div>
-        <div>
-          <h3>Черниш Андрій Володимирович</h3>
-          <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
-        </div>
-        <button>Детальніше</button>
-      </li>
-    </ul>
+    <div class="wrapper">
+      <div>
+        <h2 class="title-h2">Команда «Сіріус»</h2>
+
+        <ul class="ul-list">
+          <li class="li-item">
+            <div class="thumb"><img src={doc1.src} alt="" /></div>
+            <div class="info">
+              <h3>Черниш Андрій Володимирович</h3>
+              <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
+              <button class="btn-team">Детальніше</button>
+            </div>
+          </li>
+          <li class="li-item">
+            <div class="thumb"><img src={doc2.src} alt="" /></div>
+            <div class="info">
+              <h3>Черниш Андрій Володимирович</h3>
+              <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
+
+              <button class="btn-team">Детальніше</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
+
+<style define:vars={{ bgUrl: `url(${advantages_bg.src})` }}>
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .team {
+    background: #f6f6f6;
+    background-image: var(--bgUrl);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .title-h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #252525;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .title-h2::before,
+  .title-h2::after {
+    content: '';
+    display: inline-block;
+    width: 19px;
+    height: 4px;
+    background-color: var(--main-color);
+    flex-shrink: 0;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ul-list {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  .li-item {
+    width: 345px;   
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .thumb {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .btn-team {
+    width: 200px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--main-color);
+    border-radius: 47px;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+    background: var(--main-color);
+  }
+  @media (min-width: 768px) {
+    .title-h2::before,
+    .title-h2::after {
+      width: 25px;
+    }
+    .ul-list {
+      margin-top: 60px;
+    }
+    .ul-list {
+      flex-wrap: unset;
+    }
+    .li-item {
+      margin-right: 30px;
+    }
+    .li-item:last-child {
+      margin-right: 0;
+    }
+  }
+  @media (min-width: 1200px) {
+    .ul-list {
+      margin-top: 70px;
+    }
+  }
+</style>
