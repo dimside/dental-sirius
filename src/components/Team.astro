@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import advantages_bg from '../assets/images/advantages__bg-fig.png';
 import doc1 from '../assets/images/doc1.jpg';
 import doc2 from '../assets/images/doc2.jpg';
@@ -30,7 +31,7 @@ const info = [
             info.map((item) => (
               <li class="li-item">
                 <div class="thumb">
-                  <img src={item.img.src} alt="" />
+                  <Image src={item.img} alt={item.name} />
                 </div>
                 <div class="info">
                   <h3>{item.name}</h3>
