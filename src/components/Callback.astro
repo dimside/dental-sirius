@@ -54,6 +54,9 @@ import close from '../assets/icons/close.svg?url';
     align-items: end;
     z-index: 1000;
 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
     opacity: 1;
     transition: all 0.4s ease;
   }
@@ -211,7 +214,6 @@ import close from '../assets/icons/close.svg?url';
     if (nameError) nameError.textContent = '';
     if (phoneError) phoneError.textContent = '';
 
-    // Сброс классов ошибок у полей, если добавляли
     callbackForm?.querySelectorAll('input').forEach((input) => {
       input.classList.remove('error-input');
     });

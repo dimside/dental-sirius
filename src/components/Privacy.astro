@@ -1,0 +1,150 @@
+---
+import close from '../assets/icons/close.svg?url';
+---
+
+<div class="privacy-overlay is-hidden" role="dialog" aria-modal="true">
+  <div class="privacy-modal">
+    <button class="privacy-close" aria-label="Закрити">
+      <img src={close} alt="" />
+    </button>
+    <div class="text-wrapper">
+      <p>
+        Залишаючи дані на сайті, Ви погоджуєтеся з Політикою конфіденційності та захисту інформації.
+      </p>
+      <h3>Захист даних</h3>
+      <p>
+        Адміністрація сайту siriusdent.com.ua (далі Сайт) не може передати або розкрити інформацію,
+        надану користувачем (далі Користувач) при використанні функцій сайту третім особам, крім
+        випадків, описаних законодавством країни, на території якої користувач веде свою діяльність.
+      </p>
+      <h3>Отримання персональної інформації</h3>
+      <p>
+        Для комунікації на сайті користувач зобов’язаний внести деяку персональну інформацію. Для
+        перевірки наданих даних, сайт залишає за собою право вимагати докази ідентичності в онлайн
+        або офлайн режимах.
+      </p>
+      <h3>Використання персональної інформації</h3>
+      <p>
+        Сайт використовує особисту інформацію Користувача для обслуговування і для поліпшення якості
+        послуг, що надаються. Сайт докладає всіх зусиль для збереження в цілості особистих даних
+        Користувача. Особиста інформація може бути розкрита у випадках, описаних законодавством, або
+        коли адміністрація буде вважати подібні дії необхідними для дотримання юридичної процедури,
+        судового розпорядження або легального процесу необхідного для роботи Користувача з Сайтом. В
+        інших випадках, ні при яких умовах, інформація, яку Користувач передає Сайту, не буде
+        розкрита третім особам.
+      </p>
+      <h3>Посилання</h3>
+      <p>
+        На сайті можуть міститися посилання на інші сайти. Сайт не несе відповідальності за зміст,
+        якість і політику безпеки цих сайтів. Дана заява про конфіденційність відноситься тільки до
+        інформації, розміщеної безпосередньо на сайті.
+      </p>
+      <h3>Безпека</h3>
+      <p>Сайт забезпечує безпеку облікового запису Користувача від несанкціонованого доступу.</p>
+      <h3>Повідомлення про зміни</h3>
+      <p>
+        Сайт залишає за собою право вносити зміни в Політику конфіденційності без додаткових
+        повідомлень. Нововведення набирають чинності з моменту їх опублікування. Користувачі можуть
+        відслідковувати зміни в Політиці конфіденційності самостійно.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .privacy-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--modal-overlay-color);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    z-index: 1000;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    opacity: 1;
+    transition: all 0.4s ease;
+  }
+
+  .privacy-modal {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+
+    width: 100%;
+    height: 80vh;
+
+    padding: 30px 25px;
+    background-color: var(--bgc-color-white);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    transform: translateY(0);
+    transition: all 0.5s ease;
+  }
+
+  .privacy-overlay.is-hidden .privacy-modal {
+    transform: translateY(150%);
+  }
+
+  .privacy-close {
+    position: absolute;
+    inset: 15px 15px auto auto;
+    margin-left: auto;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition: var(--effectDuration);
+  }
+
+  .privacy-close:hover {
+    background-color: var(--button-hover-color);
+    scale: 1.1;
+  }
+
+  .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+
+  .privacy-modal h3 {
+    font-size: var(--fs-modal-h3);
+  }
+
+  @media (min-width: 768px) {
+    .privacy-overlay {
+      align-items: center;
+    }
+
+    .privacy-modal {
+      width: 420px;
+      height: 500px;
+      border-radius: 20px;
+      opacity: 1;
+      transition: all 0.3s ease-in-out;
+      transform: none;
+    }
+
+    .privacy-overlay.is-hidden .privacy-modal {
+      transform: none;
+      opacity: 0;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .privacy-modal {
+      width: 500px;
+      height: 600px;
+    }
+  }
+</style>
