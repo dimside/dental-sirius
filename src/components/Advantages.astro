@@ -112,16 +112,25 @@ import money2 from '../assets/icons/money2.svg?url';
       color: #252525;
       text-align: center;
       gap: 20px;
+
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.588);
     }
 
     .title-h2::before,
     .title-h2::after {
       content: '';
-      display: inline-block;
+      /* display: inline-block; */
       width: 19px;
       height: 4px;
-      background-color: var(--main-color);
-      flex-shrink: 0;
+      /* background-color: var(--main-color); */
+      /* flex-shrink: 0; */
+    }
+
+    .title-h2::before {
+      background: linear-gradient(90deg, transparent, var(--main-color));
+    }
+    .title-h2::after {
+      background: linear-gradient(90deg, var(--main-color), transparent);
     }
 
     .text-bold {
