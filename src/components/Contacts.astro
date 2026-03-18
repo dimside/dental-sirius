@@ -124,6 +124,7 @@ import WhatsAppIcon from '../assets/icons/whatsapp.svg';
   .contacts h2 {
     position: relative;
     margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.588);
   }
 
   .contacts h2::before,
@@ -131,18 +132,21 @@ import WhatsAppIcon from '../assets/icons/whatsapp.svg';
     content: '';
     position: absolute;
     top: 45%;
-    display: block;
-    width: 19px;
-    height: 4px;
-    background-color: var(--main-color);
-  }
 
-  .contacts h2::before {
-    left: -50px;
+    display: block;
+    width: 25px;
+    height: 4px;
+
+    border-radius: 2px;
   }
 
   .contacts h2::after {
+    background: linear-gradient(90deg, var(--main-color), transparent);
     right: -50px;
+  }
+  .contacts h2::before {
+    background: linear-gradient(90deg, transparent, var(--main-color));
+    left: -50px;
   }
 
   .all-info-wrapper {

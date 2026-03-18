@@ -39,7 +39,7 @@ import close from '../assets/icons/close.svg?url';
 
     <p class="modal-policy">
       Натискаючи на кнопку, ви погоджуєтесь з
-      <span>умовами обробки персональних даних</span>
+      <span class="personal-data">умовами обробки персональних даних</span>
     </p>
   </div>
 </div>
@@ -197,13 +197,17 @@ import close from '../assets/icons/close.svg?url';
 </style>
 
 <script>
+  import { initPrivacyModal } from '../scripts/privacyModal';
   const callbackBtn = document.querySelector('.appointment-button');
   const modalCloseBtn = document.querySelector('.modal-close');
   const modalOverlay = document.querySelector('.modal-overlay');
   const callbackForm = document.querySelector<HTMLFormElement>('#callback-form');
+  const personalDataBtn = document.querySelector('.personal-data');
 
   const nameError = document.querySelector<HTMLElement>('[data-error="name"]');
   const phoneError = document.querySelector<HTMLElement>('[data-error="phone"]');
+
+  initPrivacyModal('.personal-data');
 
   const closeModal = () => {
     document.body.classList.remove('no-scroll');
