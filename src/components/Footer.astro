@@ -74,39 +74,7 @@ import LogoIcon from '../assets/icons/Sirius-logo.svg';
 </style>
 
 <script>
-  const privacyButton = document.querySelector('.privacy');
-  const privacyModal = document.querySelector('.privacy-overlay');
-  const privacyCloseBtn = document.querySelector('.privacy-close') as HTMLElement;
-  let lastFocused: HTMLElement | null = null;
+  import { initPrivacyModal } from '../scripts/privacyModal';
 
-  const closeHandler = () => {
-    document.body.classList.remove('no-scroll');
-    privacyModal?.classList.add('is-hidden');
-
-    lastFocused?.focus();
-  };
-
-  privacyButton?.addEventListener('click', () => {
-    lastFocused = document.activeElement as HTMLElement;
-
-    privacyModal?.classList.remove('is-hidden');
-    document.body.classList.add('no-scroll');
-
-    privacyCloseBtn?.focus();
-  });
-
-  privacyCloseBtn?.addEventListener('click', closeHandler);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.code === 'Escape') {
-      closeHandler();
-    }
-  });
-
-  privacyModal?.addEventListener('click', (e) => {
-    const isOverlay = e.target === e.currentTarget;
-    if (isOverlay) {
-      closeHandler();
-    }
-  });
+  initPrivacyModal('.privacy');
 </script>
