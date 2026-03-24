@@ -36,7 +36,7 @@ const info = [
                 <div class="info">
                   <h3>{item.name}</h3>
                   <p>к.м.н., лікар-стоматолог, хірург-імплантолог</p>
-                  <button class="btn-team" data-modal={item.id}>
+                  <button class="btn-team" data-modal={item.id} aria-controls={item.id}>
                     Детальніше
                   </button>
                 </div>
@@ -49,7 +49,13 @@ const info = [
   </div>
   {
     info.map((item) => (
-      <div id={item.id} class="backdrop is-hidden">
+      <div
+        id={item.id}
+        class="backdrop is-hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${item.id}-title`}
+      >
         <div class="modal-content">
           <button class="close-btn" aria-label="Закрити">
             <img src={close} alt="" />
@@ -91,11 +97,8 @@ const info = [
   .title-h2::before,
   .title-h2::after {
     content: '';
-    /* display: inline-block; */
     width: 19px;
     height: 4px;
-    /* background-color: var(--main-color); */
-    /* flex-shrink: 0; */
   }
   .title-h2::before {
     background: linear-gradient(90deg, transparent, var(--main-color));

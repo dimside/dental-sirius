@@ -38,6 +38,11 @@ import LogoIcon from '../assets/icons/Sirius-logo.svg';
     display: flex;
     align-items: center;
     gap: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .logo-wrapper:hover {
+    transform: translateY(-2px);
   }
 
   .logo-wrapper p:first-child {
@@ -47,15 +52,40 @@ import LogoIcon from '../assets/icons/Sirius-logo.svg';
 
   .logo {
     fill: var(--main-color);
+    transition: filter 0.3s ease;
+  }
+
+  .logo-wrapper:hover .logo {
+    filter: drop-shadow(0 0 6px rgba(47, 158, 136, 0.6));
   }
 
   .privacy {
-    text-decoration: underline;
+    position: relative;
+    display: inline-block;
+    color: var(--text-color-white);
     cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .privacy::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+    transform: translateX(-50%);
+    transition: all 0.4s ease;
   }
 
   .privacy:hover {
-    text-shadow: 2px 3px 4px rgba(68, 133, 90, 0.845);
+    color: var(--main-color);
+    text-shadow: 0 0 8px rgba(47, 158, 136, 0.6);
+  }
+
+  .privacy:hover::after {
+    width: 100%;
   }
 
   @media (min-width: 768px) {
