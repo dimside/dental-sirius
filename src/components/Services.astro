@@ -1,15 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-// import protezImg from '../assets/images/protezirovanie.jpg';
 import protezImg from '../assets/images/protez.webp';
-// import whiteningImg from '../assets/images/vinir.jpg';
 import whiteningImg from '../assets/images/whitening2.webp';
-// import implantImg from '../assets/images/implant.jpg';
 import implantImg from '../assets/images/implantation.webp';
 import surgeryImg from '../assets/images/ambulator2.jpg';
-// import paroImg from '../assets/images/parodontologiya.jpg';
 import paroImg from '../assets/images/health.webp';
 import close from '../assets/icons/close.svg?url';
+import { lazy } from 'astro:schema';
 
 const services = [
   //   {
@@ -102,8 +99,21 @@ const services = [
         {
           services.map((service) => (
             <li class="li-item">
-              <Image src={service.img} alt={service.title} class="img" />
-              <button class="btn-services" data-modal={service.id}>
+              <Image
+                src={service.img}
+                alt={service.title}
+                class="img"
+                loading="lazy"
+                width={360}
+                height={260}
+                sizes="(max-width: 767px) 345px, (max-width: 1199px) 352px, 360px"
+              />
+              <button
+                class="btn-services"
+                data-modal={service.id}
+                aria-controls={service.id}
+                aria-expanded="false"
+              >
                 <h3 class="title">{service.title}</h3>
               </button>
             </li>
@@ -115,10 +125,16 @@ const services = [
 
   {
     services.map((service) => (
-      <div id={service.id} class="backdrop is-hidden">
+      <div
+        id={service.id}
+        class="backdrop is-hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${service.id}-title`}
+      >
         <div class="modal-content">
           <button class="close-btn" aria-label="Закрити">
-            <img src={close} alt="" />
+            <img src={close} alt="Закрити" />
           </button>
           <h3>{service.title}</h3>
           <div class="modal-body">
@@ -161,11 +177,8 @@ const services = [
   .title-h2::before,
   .title-h2::after {
     content: '';
-    /* display: inline-block; */
     width: 19px;
     height: 4px;
-    /* background-color: var(--main-color); */
-    /* flex-shrink: 0; */
   }
   .title-h2::before {
     background: linear-gradient(90deg, transparent, var(--main-color));
@@ -237,7 +250,7 @@ const services = [
     background-color: var(--button-hover-color);
     border-radius: 47px;
     opacity: 0;
-    transform: translateY(10px); /* старт ниже */
+    transform: translateY(10px);
 
     transition:
       opacity 0.4s ease,
@@ -381,6 +394,7 @@ const services = [
       if (modal) {
         modal.classList.remove('is-hidden');
         document.body.style.overflow = 'hidden';
+        btn.setAttribute('aria-expanded', 'true');
       }
     });
   });
@@ -391,6 +405,8 @@ const services = [
       if (target === backdrop || target.closest('.close-btn')) {
         backdrop.classList.add('is-hidden');
         document.body.style.overflow = '';
+        const btn = document.querySelector(`[aria-controls="${backdrop.id}"]`);
+        if (btn) btn.setAttribute('aria-expanded', 'false');
       }
     });
   });
@@ -401,6 +417,8 @@ const services = [
       if (activeModal) {
         activeModal.classList.add('is-hidden');
         document.body.style.overflow = '';
+        const btn = document.querySelector(`[aria-controls="${activeModal.id}"]`);
+        if (btn) btn.setAttribute('aria-expanded', 'false');
       }
     }
   });

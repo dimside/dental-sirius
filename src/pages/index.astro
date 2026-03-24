@@ -15,14 +15,48 @@ import Callback from '../components/Callback.astro';
 import Privacy from '../components/Privacy.astro';
 ---
 
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Стоматологія Сіріус у Трускавці — лікування зубів, імплантація, протезування</title>
+    <meta
+      name="description"
+      content="Стоматологія Сіріус у Трускавці – лікування зубів, імплантація, протезування та чистка. Сучасне обладнання та досвідчені лікарі. Адреса: вул. Суховоля, 50, 2 поверх, офіс 1, Трускавець. Тел.: (067) 476-49-95, (063) 741-55-29, (096) 256-80-70."
+    />
+    <link rel="canonical" href="https://siriusdental.com.ua/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta property="og:title" content="Стоматологія Сіріус у Трускавці" />
+    <meta property="og:description" content="Професійне лікування зубів у Трускавці" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://siriusdental.com.ua/" />
+    <meta property="og:image" content="https://siriusdental.com.ua/og-image.jpg" />
+    <meta http-equiv="Content-Language" content="uk" />
     <meta name="generator" content={Astro.generator} />
-    <title>Сіріус - стоматологічний центр | Професійне стоматологічне лікування у Трускавці</title>
+
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": "Стоматологія Сіріус",
+        "image": "https://siriusdental.com.ua/logo.svg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Суховоля, 50, 2 поверх, офіс 1",
+          "addressLocality": "Трускавец",
+          "addressCountry": "UA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 49.277355,
+          "longitude": 23.497551
+        },
+        "telephone": ["+380674764995", "+380637415529", "+380962568070"],
+        "openingHours": ["Mo-Fr 10:00-18:00", "Sa 10:00-13:00", "Su off"]
+      }
+    </script>
   </head>
   <body>
     <Header />
@@ -33,7 +67,7 @@ import Privacy from '../components/Privacy.astro';
       <Services />
       <Team />
       <Gallery />
-      <Prices/>
+      <Prices />
       <Contacts />
     </main>
     <Footer />

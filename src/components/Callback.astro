@@ -4,8 +4,8 @@ import close from '../assets/icons/close.svg?url';
 ---
 
 <div class="modal-overlay is-hidden" id="callback-modal">
-  <div class="modal">
-    <button class="modal-close" id="modal-close">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="callback-title">
+    <button class="modal-close" id="modal-close" aria-label="Закрити вікно">
       <img src={close} alt="" />
     </button>
 
@@ -167,9 +167,8 @@ import close from '../assets/icons/close.svg?url';
     cursor: pointer;
   }
 
-  /* Скрытый блок ответа с базовой стилизацией под input */
   .form-response {
-    display: none; /* скрыт по умолчанию */
+    display: none;
     height: 60px;
     border-radius: 30px;
     background-color: #d8d8d857;
@@ -177,26 +176,23 @@ import close from '../assets/icons/close.svg?url';
     border: none;
     padding: 0 25px;
     margin-bottom: 15px;
-    font-size: 18px;
-    line-height: 60px; /* чтобы текст был по центру вертикально */
+    font-size: 14px;
+    line-height: 60px;
     box-sizing: border-box;
     transition: all 0.3s;
   }
 
-  /* Появление блока */
   .form-response.show {
     display: block;
     opacity: 1;
   }
 
-  /* Успешная отправка */
   .form-response.success {
     border: 1px solid green;
     background-color: #e6ffe6;
     color: green;
   }
 
-  /* Ошибка отправки */
   .form-response.error {
     border: 1px solid red;
     background-color: #ffe6e6;
@@ -210,6 +206,8 @@ import close from '../assets/icons/close.svg?url';
 
     .modal {
       width: 420px;
+      min-height: auto;
+      max-height: none;
       height: 500px;
       border-radius: 20px;
       opacity: 1;
@@ -226,7 +224,7 @@ import close from '../assets/icons/close.svg?url';
   @media (min-width: 1200px) {
     .modal {
       width: 500px;
-      height: 600px;
+      /* height: 600px; */
     }
 
     .modal-input {
@@ -244,171 +242,180 @@ import close from '../assets/icons/close.svg?url';
 </style>
 
 <script>
-import { initPrivacyModal } from '../scripts/privacyModal';
+  import { initPrivacyModal } from '../scripts/privacyModal';
 
-const callbackBtn = document.querySelector('.appointment-button');
-const modalCloseBtn = document.querySelector('.modal-close');
-const modalOverlay = document.querySelector('.modal-overlay');
-const callbackForm = document.querySelector<HTMLFormElement>('#callback-form');
-const phoneInput = document.querySelector<HTMLInputElement>('input[name="phone"]');
+  const callbackBtn = document.querySelector('.appointment-button');
+  const modalCloseBtn = document.querySelector('.modal-close');
+  const modalOverlay = document.querySelector('.modal-overlay');
+  const callbackForm = document.querySelector<HTMLFormElement>('#callback-form');
+  const phoneInput = document.querySelector<HTMLInputElement>('input[name="phone"]');
 
-const nameError = document.querySelector<HTMLElement>('[data-error="name"]');
-const phoneError = document.querySelector<HTMLElement>('[data-error="phone"]');
-const responseBlock = document.querySelector<HTMLElement>('#form-response');
+  const nameError = document.querySelector<HTMLElement>('[data-error="name"]');
+  const phoneError = document.querySelector<HTMLElement>('[data-error="phone"]');
+  const responseBlock = document.querySelector<HTMLElement>('#form-response');
 
-initPrivacyModal('.personal-data');
+  initPrivacyModal('.personal-data');
 
-// --------------------------
-// Маска для телефона: XXX-XXX-XX-XX, первая цифра 0
-// --------------------------
-phoneInput?.addEventListener('input', () => {
-  let value = phoneInput.value.replace(/\D/g, ''); // оставляем только цифры
-  if (value.length > 10) value = value.slice(0, 10);
+  // --------------------------
+  // Маска для телефона: XXX-XXX-XX-XX, первая цифра 0
+  // --------------------------
+  phoneInput?.addEventListener('input', () => {
+    let value = phoneInput.value.replace(/\D/g, ''); // оставляем только цифры
+    if (value.length > 10) value = value.slice(0, 10);
 
-  // Если первая цифра не 0, автоматически исправляем на 0
-  if (value.length > 0 && value[0] !== '0') {
-    value = '0' + value.slice(1);
+    // Если первая цифра не 0, автоматически исправляем на 0
+    if (value.length > 0 && value[0] !== '0') {
+      value = '0' + value.slice(1);
+    }
+
+    const parts = [];
+    if (value.length > 0) parts.push(value.slice(0, 3));
+    if (value.length >= 4) parts.push(value.slice(3, 6));
+    if (value.length >= 7) parts.push(value.slice(6, 8));
+    if (value.length >= 9) parts.push(value.slice(8, 10));
+
+    phoneInput.value = parts.join('-');
+  });
+
+  // --------------------------
+  // Закрытие модалки
+  // --------------------------
+  const closeModal = () => {
+    document.body.classList.remove('no-scroll');
+    modalOverlay?.classList.add('is-hidden');
+
+    callbackForm?.reset();
+
+    if (nameError) nameError.textContent = '';
+    if (phoneError) phoneError.textContent = '';
+
+    if (responseBlock) {
+      responseBlock.textContent = '';
+      responseBlock.classList.remove('success', 'error', 'show');
+    }
+
+    callbackForm?.querySelectorAll('input').forEach((input) => {
+      input.classList.remove('error-input');
+    });
+  };
+
+  // --------------------------
+  // Открытие модалки
+  // --------------------------
+  callbackBtn?.addEventListener('click', () => {
+    document.body.classList.add('no-scroll');
+    modalOverlay?.classList.remove('is-hidden');
+    if (callbackForm) {
+      const startInput = callbackForm.querySelector<HTMLInputElement>('input[name="startTime"]');
+      if (startInput) startInput.value = Date.now().toString();
+    }
+  });
+
+  modalCloseBtn?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape') closeModal();
+  });
+  modalOverlay?.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.modal')) closeModal();
+  });
+
+  // --------------------------
+  // Валидация формы
+  // --------------------------
+  function validate(formData: FormData): { isValid: boolean; name: string; phone: string } {
+    let isValid = true;
+
+    // Сброс подсветки перед проверкой
+    callbackForm
+      ?.querySelectorAll('input')
+      .forEach((input) => input.classList.remove('error-input'));
+    if (nameError) nameError.textContent = '';
+    if (phoneError) phoneError.textContent = '';
+
+    const name = formData.get('name')?.toString().trim() || '';
+    const phone = formData.get('phone')?.toString().trim() || '';
+
+    const nameRegex = /^[А-Яа-яЁёІЇЄҐієїґA-Za-z\s]{1,30}$/;
+    if (!nameRegex.test(name)) {
+      if (nameError) nameError.textContent = 'Імʼя повинно містити тільки букви (до 30 символів)';
+      isValid = false;
+      callbackForm
+        ?.querySelector<HTMLInputElement>('input[name="name"]')
+        ?.classList.add('error-input');
+    }
+
+    // Телефон: XXX-XXX-XX-XX, первая цифра 0
+    const phoneRegex = /^0\d{2}-\d{3}-\d{2}-\d{2}$/;
+    if (!phoneRegex.test(phone)) {
+      if (phoneError)
+        phoneError.textContent = 'Телефон повинен починатися з 0 та бути у форматі XXX-XXX-XX-XX';
+      isValid = false;
+      callbackForm
+        ?.querySelector<HTMLInputElement>('input[name="phone"]')
+        ?.classList.add('error-input');
+    }
+
+    return { isValid, name, phone };
   }
 
-  const parts = [];
-  if (value.length > 0) parts.push(value.slice(0, 3));
-  if (value.length >= 4) parts.push(value.slice(3, 6));
-  if (value.length >= 7) parts.push(value.slice(6, 8));
-  if (value.length >= 9) parts.push(value.slice(8, 10));
+  // --------------------------
+  // Отправка формы
+  // --------------------------
+  callbackForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!callbackForm || !responseBlock) return;
 
-  phoneInput.value = parts.join('-');
-});
+    const formData = new FormData(callbackForm);
 
-// --------------------------
-// Закрытие модалки
-// --------------------------
-const closeModal = () => {
-  document.body.classList.remove('no-scroll');
-  modalOverlay?.classList.add('is-hidden');
+    // Honeypot и таймер антиспам
+    const honeypot = formData.get('_honeypot')?.toString();
+    const startTime = Number(formData.get('startTime'));
+    if (honeypot) return;
+    if (Date.now() - startTime < 1500) return;
 
-  callbackForm?.reset();
+    const { isValid, name, phone } = validate(formData);
+    if (!isValid) return;
 
-  if (nameError) nameError.textContent = '';
-  if (phoneError) phoneError.textContent = '';
-
-  if (responseBlock) {
+    // Сброс блока ответа перед новой попыткой
     responseBlock.textContent = '';
     responseBlock.classList.remove('success', 'error', 'show');
-  }
 
-  callbackForm?.querySelectorAll('input').forEach((input) => {
-    input.classList.remove('error-input');
-  });
-};
+    try {
+      const response = await fetch('http://localhost:3000/api/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone }),
+      });
 
-// --------------------------
-// Открытие модалки
-// --------------------------
-callbackBtn?.addEventListener('click', () => {
-  document.body.classList.add('no-scroll');
-  modalOverlay?.classList.remove('is-hidden');
-  if (callbackForm) {
-    const startInput = callbackForm.querySelector<HTMLInputElement>('input[name="startTime"]');
-    if (startInput) startInput.value = Date.now().toString();
-  }
-});
+      const data = await response.json();
 
-modalCloseBtn?.addEventListener('click', closeModal);
-document.addEventListener('keydown', (e) => {
-  if (e.code === 'Escape') closeModal();
-});
-modalOverlay?.addEventListener('click', (e) => {
-  const target = e.target as HTMLElement;
-  if (!target.closest('.modal')) closeModal();
-});
+      if (response.ok && data.ok) {
+        // Успех
+        responseBlock.textContent = 'Заявку прийнято ✅';
+        responseBlock.classList.add('success', 'show');
+        responseBlock.classList.remove('error');
 
-// --------------------------
-// Валидация формы
-// --------------------------
-function validate(formData: FormData): { isValid: boolean; name: string; phone: string } {
-  let isValid = true;
+        // Снять красную подсветку после успешной отправки
+        callbackForm
+          .querySelectorAll('input')
+          .forEach((input) => input.classList.remove('error-input'));
 
-  // Сброс подсветки перед проверкой
-  callbackForm?.querySelectorAll('input').forEach((input) => input.classList.remove('error-input'));
-  if (nameError) nameError.textContent = '';
-  if (phoneError) phoneError.textContent = '';
+        callbackForm.reset();
 
-  const name = formData.get('name')?.toString().trim() || '';
-  const phone = formData.get('phone')?.toString().trim() || '';
-
-  const nameRegex = /^[А-Яа-яЁёІЇЄҐієїґA-Za-z\s]{1,30}$/;
-  if (!nameRegex.test(name)) {
-    if (nameError) nameError.textContent = 'Імʼя повинно містити тільки букви (до 30 символів)';
-    isValid = false;
-    callbackForm?.querySelector<HTMLInputElement>('input[name="name"]')?.classList.add('error-input');
-  }
-
-  // Телефон: XXX-XXX-XX-XX, первая цифра 0
-  const phoneRegex = /^0\d{2}-\d{3}-\d{2}-\d{2}$/;
-  if (!phoneRegex.test(phone)) {
-    if (phoneError) phoneError.textContent = 'Телефон повинен починатися з 0 та бути у форматі XXX-XXX-XX-XX';
-    isValid = false;
-    callbackForm?.querySelector<HTMLInputElement>('input[name="phone"]')?.classList.add('error-input');
-  }
-
-  return { isValid, name, phone };
-}
-
-// --------------------------
-// Отправка формы
-// --------------------------
-callbackForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (!callbackForm || !responseBlock) return;
-
-  const formData = new FormData(callbackForm);
-
-  // Honeypot и таймер антиспам
-  const honeypot = formData.get('_honeypot')?.toString();
-  const startTime = Number(formData.get('startTime'));
-  if (honeypot) return;
-  if (Date.now() - startTime < 1500) return;
-
-  const { isValid, name, phone } = validate(formData);
-  if (!isValid) return;
-
-  // Сброс блока ответа перед новой попыткой
-  responseBlock.textContent = '';
-  responseBlock.classList.remove('success', 'error', 'show');
-
-  try {
-    const response = await fetch('http://localhost:3000/api/callback', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok && data.ok) {
-      // Успех
-      responseBlock.textContent = 'Заявку прийнято ✅';
-      responseBlock.classList.add('success', 'show');
-      responseBlock.classList.remove('error');
-
-      // Снять красную подсветку после успешной отправки
-      callbackForm.querySelectorAll('input').forEach((input) => input.classList.remove('error-input'));
-
-      callbackForm.reset();
-
-      // Автозакрытие через 3 сек
-      setTimeout(closeModal, 3000);
-    } else {
-      // Ошибка сервера
-      responseBlock.textContent = data.error || 'Сталася помилка ❌ Спробуйте ще раз';
+        // Автозакрытие через 3 сек
+        setTimeout(closeModal, 3000);
+      } else {
+        // Ошибка сервера
+        responseBlock.textContent = data.error || 'Сталася помилка ❌ Спробуйте ще раз';
+        responseBlock.classList.add('error', 'show');
+        responseBlock.classList.remove('success');
+      }
+    } catch (err) {
+      console.error(err);
+      responseBlock.textContent = 'Сталася помилка ❌ Спробуйте ще раз';
       responseBlock.classList.add('error', 'show');
       responseBlock.classList.remove('success');
     }
-  } catch (err) {
-    console.error(err);
-    responseBlock.textContent = 'Сталася помилка ❌ Спробуйте ще раз';
-    responseBlock.classList.add('error', 'show');
-    responseBlock.classList.remove('success');
-  }
-});
+  });
 </script>

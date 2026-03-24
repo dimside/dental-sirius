@@ -2,8 +2,14 @@
 import close from '../assets/icons/close.svg?url';
 ---
 
-<div class="privacy-overlay is-hidden" role="dialog" aria-modal="true">
+<div
+  class="privacy-overlay is-hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="privacy-title"
+>
   <div class="privacy-modal">
+    <h2 id="privacy-title" class="privacy-title">Політика конфіденційності</h2>
     <button class="privacy-close" aria-label="Закрити">
       <img src={close} alt="" />
     </button>

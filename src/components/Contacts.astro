@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import location from '../assets/icons/location.svg?url';
 import clock from '../assets/icons/clock2.svg?url';
 import call from '../assets/icons/call.svg?url';
+import mail from '../assets/icons/mail.svg?url';
 
 import ViberIcon from '../assets/icons/viber.svg';
 import TelegramIcon from '../assets/icons/telegram.svg';
@@ -50,11 +51,11 @@ import WhatsAppIcon from '../assets/icons/whatsapp.svg';
           </li>
           <li class="info-item">
             <div class="sign-wrapper">
-              <img src={clock} alt="" class="sign" />
+              <img src={mail} alt="" class="sign" />
             </div>
             <div class="text-wrapper">
               <h3>Електронна пошта:</h3>
-              <a href="mailto:topdent.vn@gmail.com" class="info-text">topdent.vn@gmail.com</a>
+              <a href="mailto:topdent.vn@gmail.com" class="info-text mail">topdent.vn@gmail.com</a>
             </div>
           </li>
         </ul>
@@ -210,6 +211,37 @@ import WhatsAppIcon from '../assets/icons/whatsapp.svg';
     text-align: center;
   }
 
+  .phone,
+  .mail {
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .phone::after,
+  .mail::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+    transition: all 0.4s ease;
+  }
+
+  .phone:hover,
+  .mail:hover {
+    color: var(--main-color);
+    text-shadow: 0 0 8px rgba(47, 158, 136, 0.6);
+  }
+
+  .phone:hover::after,
+  .mail:hover::after {
+    transform: translateY(-2px);
+    width: 100%;
+  }
+
   .info-text,
   .phone {
     font-size: clamp(15px, 1.3vw, 26px);
@@ -254,16 +286,16 @@ import WhatsAppIcon from '../assets/icons/whatsapp.svg';
     background-color: #8c8ca83d;
   }
 
+  .social-link:hover > .social-sign {
+    fill: #424057a2;
+    scale: 1.1;
+  }
+
   .social-sign {
     width: 20px;
     height: 20px;
     fill: #424057;
     transition: var(--effectDuration);
-  }
-
-  .social-sign:hover {
-    fill: #424057a2;
-    scale: 1.1;
   }
 
   .map-wrapper {
