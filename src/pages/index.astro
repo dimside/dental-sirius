@@ -13,6 +13,7 @@ import Prices from '../components/Prices.astro';
 import '../styles/main.css';
 import Callback from '../components/Callback.astro';
 import Privacy from '../components/Privacy.astro';
+import Promotion from '../components/Promotion.astro';
 ---
 
 <html lang="uk">
@@ -58,7 +59,7 @@ import Privacy from '../components/Privacy.astro';
       }
     </script>
   </head>
-  <body>
+  <>
     <Header />
     <main>
       <Hero />
@@ -74,5 +75,6 @@ import Privacy from '../components/Privacy.astro';
     <BurgerMenu />
     <Callback />
     <Privacy />
-  </body>
+    <Promotion />
+  </>
 </html>
