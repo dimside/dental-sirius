@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import advantages_bg from '../assets/images/advantages__bg-fig.png';
 import doc1 from '../assets/images/doc1.jpg';
-import doc2 from '../assets/images/doc2.jpg';
+import doc2 from '../assets/images/siriusdentworker.jpg';
 import close from '../assets/icons/close.svg?url';
 
 const info = [
@@ -128,11 +128,17 @@ const info = [
   }
   .thumb {
     margin-bottom: 25px;
+    height: 393px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 8px;
     z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  .thumb img {
+    height: 100%;
   }
   .btn-team {
     width: 200px;
