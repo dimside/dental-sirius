@@ -1,11 +1,5 @@
----
 deployment:
   tasks:
-    # Встановлюємо всі залежності (включаючи devDependencies для Astro build)
     - npm ci --include=dev
-
-    # Виконуємо збірку (Astro створює папку dist)
     - npm run build
-
-    # Копіюємо вміст dist у public_html (з видаленням старих файлів)
-    - rsync -av --delete dist/ /home/h77019c/public_html/ --exclude=.git
+    - /bin/cp -R dist/* public_html/
