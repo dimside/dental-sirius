@@ -1,6 +1,5 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/h77019c/public_html/
-    - npm ci --include=dev
+    - npm ci
     - npm run build
-    - /bin/cp -R dist/. $DEPLOYPATH
+    - /bin/cp -R dist/. $HOME/public_html/
