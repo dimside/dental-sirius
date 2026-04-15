@@ -2,4 +2,4 @@ deployment:
   tasks:
     - npm ci --include=dev
     - npm run build
-    - /bin/cp -R dist/* public_html/
+    - /bin/cp -R dist/. public_html/
