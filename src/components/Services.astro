@@ -69,14 +69,9 @@ const services = [
                 height={260}
                 sizes="(max-width: 767px) 345px, (max-width: 1199px) 352px, 360px"
               />
-              <button
-                class="btn-services"
-                data-modal={service.id}
-                aria-controls={service.id}
-                aria-expanded="false"
-              >
+              <div class="btn-services">
                 <h3 class="title">{service.title}</h3>
-              </button>
+              </div>
             </li>
           ))
         }
@@ -84,7 +79,7 @@ const services = [
     </div>
   </div>
 
-  {
+  <!-- {
     services.map((service) => (
       <div
         id={service.id}
@@ -117,7 +112,7 @@ const services = [
         </div>
       </div>
     ))
-  }
+  } -->
 </section>
 
 <style>
@@ -188,7 +183,7 @@ const services = [
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
   .li-item::before {
     content: '';
@@ -205,19 +200,29 @@ const services = [
     position: absolute;
     z-index: 2;
     width: 180px;
-    height: 60px;
+    height: auto;
     border: none;
     background: none;
     color: #fff;
     font-weight: 700;
-    cursor: pointer;
+    cursor: default;
     overflow: hidden;
     transition: all 0.3s ease;
     border-radius: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* padding: 0 10px; */
+    box-sizing: border-box;
   }
   .btn-services h3 {
     margin: 0;
-    transition: opacity 0.3s ease;
+    line-height: 1.2;
+    word-wrap: break-word;
+    width: 100%;
+    /* transition: opacity 0.3s ease; */
   }
   /* .btn-services::after {
     content: 'ДЕТАЛЬНІШЕ';
@@ -273,7 +278,7 @@ const services = [
     border-radius: 50%;
     background-color: var(--main-color);
     transition: var(--effectDuration);
-    cursor: pointer;
+    /* cursor: pointer; */
   }
   .close-btn:hover {
     background-color: var(--button-hover-color);
@@ -346,7 +351,7 @@ const services = [
     }
     .btn-services {
       width: 200px;
-      height: 70px;
+      /* height: 70px; */
     }
   }
   @media (min-width: 1200px) {
@@ -360,7 +365,7 @@ const services = [
 
     .btn-services {
       width: 260px;
-      height: 80px;
+      /* height: 80px; */
     }
     .modal-content {
       padding: 50px;
@@ -369,7 +374,7 @@ const services = [
   }
 </style>
 
-<script>
+<!-- <script>
   const openButtons = document.querySelectorAll('.btn-services');
   const backdrops = document.querySelectorAll('.backdrop');
 
@@ -408,4 +413,4 @@ const services = [
       }
     }
   });
-</script>
+</script> -->
